@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 
 int beginExample(void)
 {
-	int sackSize = 15;
+	int sackSize = 15; 
 	int objectsQuantity = 6;
 
 	srand ( time(NULL) );			//seed of randoms
@@ -55,13 +55,21 @@ int beginExample(void)
 		(objKinds + i) -> weight = rand() % 7 + 1;
 	}
 
+	/*(objKinds + 0) -> value =11;
+	(objKinds + 0) -> weight = 4;
+	
+	(objKinds + 1) -> value = 7;
+	(objKinds + 1) -> weight = 3;
+
+	(objKinds + 2) -> value = 12;
+	(objKinds + 2) -> weight = 5;*/
 
 
 	printExampleProblem(objectsQuantity);
 
 
 	//CREATE TABLE
-	knapsack(objKinds, sackSize + 1, objectsQuantity);
+	knapsackDynamicProgramming(objKinds, sackSize + 1, objectsQuantity);
 
 
 	return 1;
@@ -73,6 +81,7 @@ void printExampleProblem(int objectsQuantity)
 	for (int i = 0; i < objectsQuantity; i++)
 	{
 		
-		printf("x%d: \n\t value = %d, weight = %d\n\n", i, (objKinds + i) -> value = rand() % 20 + 1, (objKinds + i) -> weight = rand() % 7 + 1);
+		printf("x%d: \n\t value = %d, weight = %d\n\n", i + 1, 
+				(objKinds + i) -> value, (objKinds + i) -> weight);
 	}
 }
