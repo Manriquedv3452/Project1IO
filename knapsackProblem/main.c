@@ -39,8 +39,8 @@ int main(int argc, char* argv[])
 
 int beginExample(void)
 {
-	int sackSize = 15; 
-	int objectsQuantity = 6;
+	int sackSize = 8; 
+	int objectsQuantity = 4;
 
 	srand ( time(NULL) );			//seed of randoms
 
@@ -63,6 +63,17 @@ int beginExample(void)
 
 	(objKinds + 2) -> value = 12;
 	(objKinds + 2) -> weight = 5;*/
+	/*(objKinds + 0) -> value =10;
+	(objKinds + 0) -> weight = 5;
+	
+	(objKinds + 1) -> value = 9;
+	(objKinds + 1) -> weight = 3;
+
+	(objKinds + 2) -> value = 5;
+	(objKinds + 2) -> weight = 4;
+
+	(objKinds + 3) -> value = 15;
+	(objKinds + 3) -> weight = 1;*/
 
 
 	printExampleProblem(objectsQuantity);
