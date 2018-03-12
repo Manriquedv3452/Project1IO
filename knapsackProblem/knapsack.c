@@ -1,7 +1,7 @@
 
 void knapsackDynamicProgramming(ObjectKind *objKind, int rows, int columns);
 int* knapsackDynamicProgrammingAlgorithm(ObjectKind *objKind, int i, int j, int rows, int columns);
-int* boundedknapsackDynamicProgrammingAlgorithm(ObjectKind *objKind, int i, int j, int rows, int columns);
+int* boundedKnapsackDynamicProgrammingAlgorithm(ObjectKind *objKind, int i, int j, int rows, int columns);
 void printArray(int rows, int columns);
 void initializeMatrix(int rows, int columns);
 
@@ -16,8 +16,8 @@ void knapsackDynamicProgramming(ObjectKind *objKind, int rows, int columns)
 	{
 		for (int i = 0; i < rows; i++)
 		{
-			copyValue = knapsackDynamicProgrammingAlgorithm(objKind, i, j, rows, columns); 
-		        //copyValue = knapsackDynamicProgrammingAlgorithm(objKind, i, j, rows, columns);
+			//copyValue = knapsackDynamicProgrammingAlgorithm(objKind, i, j, rows, columns); 
+		        copyValue = boundedKnapsackDynamicProgrammingAlgorithm(objKind, i, j, rows, columns);
 			objects[i][j].totalValue = copyValue[0];
 			objects[i][j].copies = copyValue[1];
 			
