@@ -16,8 +16,8 @@ void knapsackDynamicProgramming(ObjectKind *objKind, int rows, int columns)
 	{
 		for (int i = 0; i < rows; i++)
 		{
-			//copyValue = knapsackDynamicProgrammingAlgorithm(objKind, i, j, rows, columns); 
-		        copyValue = boundedKnapsackDynamicProgrammingAlgorithm(objKind, i, j, rows, columns);
+			copyValue = knapsackDynamicProgrammingAlgorithm(objKind, i, j, rows, columns); 
+		        //copyValue = boundedKnapsackDynamicProgrammingAlgorithm(objKind, i, j, rows, columns);
 			objects[i][j].totalValue = copyValue[0];
 			objects[i][j].copies = copyValue[1];
 			
