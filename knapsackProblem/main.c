@@ -1,5 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <time.h>
+#include "structs.h"
+#include "knapsack.c"
+
+int beginExample(void);
+void printExampleProblem(int objectsQuantity);
+
+
+ObjectKind *objKinds;
 
 int main(int argc, char* argv[])
 {
@@ -8,7 +18,8 @@ int main(int argc, char* argv[])
 		
 		if (!strcmp(argv[1], "-X"))
 		{
-			printf("ARGUMENT GETED\n");
+			//printf("ARGUMENT GETED\n");
+			beginExample();
 		}
 		else if (strstr(argv[1], "-E") != NULL)
 		{
@@ -17,11 +28,51 @@ int main(int argc, char* argv[])
 	}
 	
 
-	else
-	{
+	else	{
 		printf("ARGUMENT NOT FOUND OR IS NOT VALID!\n\nTO RUN: './program -X' or './program -E=n'\n\n");
 		return 0;
 	}
 
 	return 0;
+}
+
+
+int beginExample(void)
+{
+	int sackSize = 15;
+	int objectsQuantity = 6;
+
+	srand ( time(NULL) );			//seed of randoms
+
+	objKinds = calloc(objectsQuantity, sizeof(ObjectKind));
+
+
+	for (int i = 0; i < objectsQuantity; i++)
+	{
+		//objKinds[i] = (ObjectKind) malloc(sizeof(ObjectKind));
+		
+		(objKinds + i) -> value = rand() % 20 + 1;
+		(objKinds + i) -> weight = rand() % 7 + 1;
+	}
+
+
+
+	printExampleProblem(objectsQuantity);
+
+
+	//CREATE TABLE
+	knapsack(objKinds, sackSize + 1, objectsQuantity);
+
+
+	return 1;
+}   
+
+void printExampleProblem(int objectsQuantity)
+{
+	printf("PROBLEM:\n");
+	for (int i = 0; i < objectsQuantity; i++)
+	{
+		
+		printf("x%d: \n\t value = %d, weight = %d\n\n", i, (objKinds + i) -> value = rand() % 20 + 1, (objKinds + i) -> weight = rand() % 7 + 1);
+	}
 }
