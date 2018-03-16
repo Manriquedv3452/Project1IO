@@ -4,6 +4,7 @@
 #include <time.h>
 #include "structs.h"
 #include "knapsack.c"
+#include "latexMaker.c"
 
 int beginExample(void);
 void printExampleProblem(int objectsQuantity);
@@ -15,11 +16,14 @@ int main(int argc, char* argv[])
 {
 	if (argc == 2)
 	{
+		initializeLatex();
 		
 		if (!strcmp(argv[1], "-X"))
 		{
 			//printf("ARGUMENT GETED\n");
 			beginExample();
+			system("pdflatex -output-directory latex latex/latex.tex");
+			system("evince -s latex/latex.pdf");
 		}
 		else if (strstr(argv[1], "-E") != NULL)
 		{
@@ -45,7 +49,6 @@ int beginExample(void)
 	srand ( time(NULL) );			//seed of randoms
 
 	objKinds = calloc(objectsQuantity, sizeof(ObjectKind));
-
 
 	for (int i = 0; i < objectsQuantity; i++)
 	{
@@ -81,7 +84,7 @@ int beginExample(void)
 
 	//CREATE TABLE
 	knapsackDynamicProgramming(objKinds, sackSize + 1, objectsQuantity);
-
+	createLatexTable(objects, sackSize + 1, objectsQuantity);
 
 	return 1;
 }   

@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\usepackage[utf8]{inputenc}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{pdflscape}
+\usepackage{array}
+\usepackage{wrapfig}\usepackage{multirow}
+\usepackage{tabu}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\setlength\parindent{20pt}
+
+\title{Proyecto 1: Programaci\'on Din\'amica vs. Greedy}
+\author{Manrique J. Dur\'an V\'asquez - Randy Morales Gamboa\\Investigaci\'on de Operaciones\\}
+\date{\today}
+
+\begin{document}
+
+
+\maketitle
+\pagebreak
+
+\section*{Programaci\'on Din\'amica}
+\begin{tabular}{l *{5}{>{}l} l}\rowcolor{white}%
+& $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ \\
+$0$ & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 \\
+$1$ & \cellcolor{green!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 \\
+$2$ & \cellcolor{green!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 \\
+$3$ & \cellcolor{green!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 \\
+$4$ & \cellcolor{green!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 & \cellcolor{green!20}26 & \cellcolor{red!20}26 & \cellcolor{red!20}26 \\
+$5$ & \cellcolor{green!20}20 & \cellcolor{red!20}20 & \cellcolor{green!20}33 & \cellcolor{red!20}33 & \cellcolor{red!20}33 & \cellcolor{red!20}33 \\
+$6$ & \cellcolor{green!20}20 & \cellcolor{red!20}20 & \cellcolor{green!20}33 & \cellcolor{red!20}33 & \cellcolor{red!20}33 & \cellcolor{red!20}33 \\
+$7$ & \cellcolor{green!20}20 & \cellcolor{red!20}20 & \cellcolor{green!20}33 & \cellcolor{red!20}33 & \cellcolor{red!20}33 & \cellcolor{red!20}33 \\
+$8$ & \cellcolor{green!20}20 & \cellcolor{green!20}29 & \cellcolor{green!20}33 & \cellcolor{green!20}39 & \cellcolor{red!20}39 & \cellcolor{red!20}39 \\
+$9$ & \cellcolor{green!20}20 & \cellcolor{green!20}29 & \cellcolor{green!20}33 & \cellcolor{green!20}39 & \cellcolor{red!20}39 & \cellcolor{red!20}39 \\
+$10$ & \cellcolor{green!20}20 & \cellcolor{green!20}29 & \cellcolor{green!20}33 & \cellcolor{green!20}39 & \cellcolor{green!20}45 & \cellcolor{red!20}45 \\
+$11$ & \cellcolor{green!20}20 & \cellcolor{green!20}29 & \cellcolor{green!20}33 & \cellcolor{green!20}39 & \cellcolor{green!20}45 & \cellcolor{red!20}45 \\
+$12$ & \cellcolor{green!20}20 & \cellcolor{green!20}29 & \cellcolor{green!20}42 & \cellcolor{red!20}42 & \cellcolor{green!20}45 & \cellcolor{red!20}45 \\
+$13$ & \cellcolor{green!20}20 & \cellcolor{green!20}29 & \cellcolor{green!20}42 & \cellcolor{red!20}42 & \cellcolor{green!20}51 & \cellcolor{red!20}51 \\
+$14$ & \cellcolor{green!20}20 & \cellcolor{green!20}29 & \cellcolor{green!20}42 & \cellcolor{red!20}42 & \cellcolor{green!20}51 & \cellcolor{red!20}51 \\
+$15$ & \cellcolor{green!20}20 & \cellcolor{green!20}29 & \cellcolor{green!20}42 & \cellcolor{green!20}48 & \cellcolor{green!20}51 & \cellcolor{red!20}51 \\
+\rowcolor{white}%
+\end{tabular}
+\end{document}

@@ -6,7 +6,8 @@ void printArray(int rows, int columns);
 void initializeMatrix(int rows, int columns);
 
 
-Object **objects;						//GENERAL MATRIX
+Object **objects;	
+					//GENERAL MATRIX
 void knapsackDynamicProgramming(ObjectKind *objKind, int rows, int columns)
 {
 
