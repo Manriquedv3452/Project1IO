@@ -79,12 +79,16 @@ int beginExample(void)
 	(objKinds + 3) -> weight = 1;*/
 
 
-	printExampleProblem(objectsQuantity);
+	//printExampleProblem(objectsQuantity);
 
 
 	//CREATE TABLE
-	knapsackDynamicProgramming(objKinds, sackSize + 1, objectsQuantity);
+	int maxZ = knapsackDynamicProgramming(objKinds, sackSize + 1, objectsQuantity);
+	
+	writeProblemMathematically(objKinds, objectsQuantity, sackSize);
 	createLatexTable(objects, sackSize + 1, objectsQuantity);
+	writeSolution(objKinds, objectsQuantity, maxZ);
+	endLatexDocument();
 
 	return 1;
 }   

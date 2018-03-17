@@ -9,4 +9,5 @@ typedef struct objectKind
 {
 	int value;
 	int weight;
+	int taked;
 } ObjectKind;

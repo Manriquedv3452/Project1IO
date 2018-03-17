@@ -1,24 +1,27 @@
 
-void knapsackDynamicProgramming(ObjectKind *objKind, int rows, int columns);
+int knapsackDynamicProgramming(ObjectKind *objKind, int rows, int columns);
 int* knapsackDynamicProgrammingAlgorithm(ObjectKind *objKind, int i, int j, int rows, int columns);
+int findOptimalSolution(Object **valuesMatrix, ObjectKind** objectsList, int rows, int columns);
 int* boundedKnapsackDynamicProgrammingAlgorithm(ObjectKind *objKind, int i, int j, int rows, int columns);
-void printArray(int rows, int columns);
 void initializeMatrix(int rows, int columns);
 
 
-Object **objects;	
-					//GENERAL MATRIX
-void knapsackDynamicProgramming(ObjectKind *objKind, int rows, int columns)
+Object **objects;			//GENERAL MATRIX
+
+
+//ITERATE THE MATRIX CELLS
+int knapsackDynamicProgramming(ObjectKind *objKind, int rows, int columns)
 {
 
 	int *copyValue;
 	initializeMatrix(rows, columns);
+
+	
 	for (int j = 0; j < columns; j++)
 	{
 		for (int i = 0; i < rows; i++)
 		{
 			copyValue = knapsackDynamicProgrammingAlgorithm(objKind, i, j, rows, columns); 
-		        //copyValue = boundedKnapsackDynamicProgrammingAlgorithm(objKind, i, j, rows, columns);
 			objects[i][j].totalValue = copyValue[0];
 			objects[i][j].copies = copyValue[1];
 			
@@ -26,7 +29,7 @@ void knapsackDynamicProgramming(ObjectKind *objKind, int rows, int columns)
 		
 	}
 
-	printArray(rows, columns);
+	return findOptimalSolution(objects, &objKind, rows, columns);
 }
 
 int* boundedKnapsackDynamicProgrammingAlgorithm(ObjectKind *objKind, int i, int j, int rows, int columns)
@@ -77,6 +80,8 @@ int* boundedKnapsackDynamicProgrammingAlgorithm(ObjectKind *objKind, int i, int 
 	}
 }
 
+
+//THIS METHOD CREATE THE TABLE OF KNAPSACL 0/1 BY DYNAMIC PROGRAMMING
 int* knapsackDynamicProgrammingAlgorithm(ObjectKind *objKind, int i, int j, int rows, int columns)
 {
 	int maxValueNotTaked = 0;
@@ -125,10 +130,32 @@ int* knapsackDynamicProgrammingAlgorithm(ObjectKind *objKind, int i, int j, int 
 	array[1] = maxCopy;
 		
 	return array;
-	
-	
-	
+		
 }
+
+//METHOD CHANGE TAKED VALUE IN TYPE OF ObjectKind TO 1 IF IT IS TAKED IN THE SOLUTION AND RETURNS THE Z VALUE (MAX VALUE CAN THE SACK TAKE);
+int findOptimalSolution(Object **valuesMatrix, ObjectKind** objectsList, int rows, int columns)
+{
+	int row = rows-1;
+	int column = columns-1;
+	
+	int zValue = 0;
+	//ObjectKind* objectsSolution = objectsList;
+
+	zValue = valuesMatrix[row][column].totalValue;
+	while (row > 0 && column >= 0)
+	{
+		if (valuesMatrix[row][column].copies == 1)
+		{
+			(*objectsList + column) -> taked = 1;
+			row -= (*objectsList + column) -> weight;
+		}
+		column--;
+	}
+
+	return zValue;
+}
+
 
 void initializeMatrix(int rows, int columns)
 {
@@ -140,15 +167,4 @@ void initializeMatrix(int rows, int columns)
 }
 
 
-void printArray(int rows, int columns)
-{
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < columns; j++)
-		{
-			printf("VALUE: %d, COPIES: %d\t", objects[i][j].totalValue, objects[i][j].copies);
-		}
-		printf("\n");
-	}
-	
-}
+
