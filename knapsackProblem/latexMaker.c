@@ -1,6 +1,6 @@
 void createLatexTable(Object **resultMatrix, int rows, int columns);
 void writeProblemMathematically(ObjectKind *obj, int objectsQuantity, int capacity);
-void writeSolution(ObjectKind *solution, int size, int maxZ);
+void writeSolution(ObjectKind *solution, int size, int maxZ, double executionTime);
 void initializeLatex(void);
 void endLatexDocument(void);
 
@@ -64,13 +64,13 @@ void createLatexTable(Object **resultMatrix, int rows, int columns)
 	} 
 
 	fprintf(output, "%s", "\\rowcolor{white}%\n"
-			"\\end{tabular}\\\\\\\\\n");
+			"\\end{tabular}\\\\\n");
 	fclose(output);
 }
 
 
 //THIS METHOS WRITES THE SOLUTION
-void writeSolution(ObjectKind *solution, int size, int maxZ)
+void writeSolution(ObjectKind *solution, int size, int maxZ, double executionTime)
 {
 	output = fopen("latex/latex.tex", "a");
 
@@ -79,6 +79,8 @@ void writeSolution(ObjectKind *solution, int size, int maxZ)
 	{
 		fprintf(output, "\\tab$x_{%d} = %d$\\\\\n", (i + 1), (solution + i) -> taked);
 	}
+	
+	fprintf(output, "\\textbf{Tiempo de Ejecuci\\'on: %2f $\\mu s$} \\\\\n", executionTime);
 
 	fclose(output);	
 }

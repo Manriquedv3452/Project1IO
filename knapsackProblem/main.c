@@ -83,11 +83,16 @@ int beginExample(void)
 
 
 	//CREATE TABLE
+	clock_t begin = clock();
+
 	int maxZ = knapsackDynamicProgramming(objKinds, sackSize + 1, objectsQuantity);
+	clock_t end = clock();
+	
+	double executionTime = (double)(end - begin) / CLOCKS_PER_SEC * 1000000;  //in microSeconds
 	
 	writeProblemMathematically(objKinds, objectsQuantity, sackSize);
 	createLatexTable(objects, sackSize + 1, objectsQuantity);
-	writeSolution(objKinds, objectsQuantity, maxZ);
+	writeSolution(objKinds, objectsQuantity, maxZ, executionTime);
 	endLatexDocument();
 
 	return 1;
