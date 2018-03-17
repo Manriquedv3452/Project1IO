@@ -64,7 +64,7 @@ void createLatexTable(Object **resultMatrix, int rows, int columns)
 	} 
 
 	fprintf(output, "%s", "\\rowcolor{white}%\n"
-			"\\end{tabular}\\\\\\\\\\\\\n");
+			"\\end{tabular}\\\\\\\\\n");
 	fclose(output);
 }
 
@@ -74,7 +74,7 @@ void writeSolution(ObjectKind *solution, int size, int maxZ)
 {
 	output = fopen("latex/latex.tex", "a");
 
-	fprintf(output, "\n\\textbf{Optimal Solution:}\\\\\n");
+	fprintf(output, "\n\\textbf{Optimal Solution:}\\\\\n\\tab $Z = %d$\\\\\n", maxZ);
 	for (int i = 0; i < size; i++)
 	{
 		fprintf(output, "\\tab$x_{%d} = %d$\\\\\n", (i + 1), (solution + i) -> taked);
