@@ -14,13 +14,13 @@ void writeProblemMathematically(ObjectKind *objKinds, int objectsQuantity, int c
 	fprintf(output, "\\section*{Modo Ejemplo}\n\n\\textbf{Maximizar:} \\\\\n\\tab");
 	for (int i = 0; i < objectsQuantity; i++)
 	{
-		fprintf(output, "$%dx_{%d} %s $", (objKinds + i) -> value, i + 1, i + 1 == objectsQuantity ? " " : "+");
+		fprintf(output, "$%dx_{%d} %s $ ", (objKinds + i) -> value, i + 1, i + 1 == objectsQuantity ? " " : "+");
 		
 	}
 	fprintf(output, "\\\\\\\\\n\\textbf{Sujeto a:}\\\\\n\\tab");
 	for (int i = 0; i < objectsQuantity; i++)
 	{
-		fprintf(output, "$%dx_{%d} %s $", (objKinds + i) -> weight, i + 1, i + 1 == objectsQuantity ? " " : "+");
+		fprintf(output, "$%dx_{%d} %s $ ", (objKinds + i) -> weight, i + 1, i + 1 == objectsQuantity ? " " : "+");
 		
 	}
 	fprintf(output, "$\\leq %d$\\\\\n", capacity);
@@ -38,14 +38,14 @@ void createLatexTable(Object **resultMatrix, int rows, int columns)
 
 	output = fopen("latex/latex.tex", "a");
 		
-	fprintf(output, "%s", "\\subsection*{Programaci\\'on Din\\'amica}\n"
-				"\\begin{tabular}{l *{5}{>{}l} l}"
-				"\\rowcolor{white}%\n");
+	fprintf(output, "%s\n\\begin{tabular}{l *{%d}{>{}l} l}\n%s\n",
+				"\\subsection*{Programaci\\'on Din\\'amica}", columns,
+				"\\rowcolor{white}%");
 	
 
 	for (int i = 0; i < columns; i++)
 	{
-		fprintf(output, "& $x_%d$ ", i + 1); 
+		fprintf(output, "& $x_{%d}$ ", i + 1); 
 	}
 	fprintf(output, "\\\\\n");
 
