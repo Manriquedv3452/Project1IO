@@ -34,8 +34,6 @@ void writeProblemMathematically(ObjectKind *objKinds, int objectsQuantity, int c
 void createLatexTable(Object **resultMatrix, int rows, int columns)
 {
 
-	printf("Writing table created by Dynamic Programming in LATEX...\n");
-
 	output = fopen("latex/latex.tex", "a");
 		
 	fprintf(output, "%s\n\\begin{tabular}{l *{%d}{>{}l} l}\n%s\n",
