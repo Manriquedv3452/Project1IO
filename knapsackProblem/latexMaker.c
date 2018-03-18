@@ -36,8 +36,8 @@ void createLatexTable(Object **resultMatrix, int rows, int columns)
 
 	output = fopen("latex/latex.tex", "a");
 		
-	fprintf(output, "%s\n\\begin{tabular}{l *{%d}{>{}l} l}\n%s\n",
-				"\\subsection*{Programaci\\'on Din\\'amica}", columns,
+	fprintf(output, "%s\n\\begin{longtable}{|*%d{p{0.5cm}|}}\n%s\n",
+				"\\subsection*{Programaci\\'on Din\\'amica}", columns+1,
 				"\\rowcolor{white}%");
 	
 
@@ -45,7 +45,7 @@ void createLatexTable(Object **resultMatrix, int rows, int columns)
 	{
 		fprintf(output, "& $x_{%d}$ ", i + 1); 
 	}
-	fprintf(output, "\\\\\n");
+	fprintf(output, "\\\\\\hline\n");
 
 
 	for (int i = 0; i < rows; i++)
@@ -58,11 +58,11 @@ void createLatexTable(Object **resultMatrix, int rows, int columns)
 			else
 				fprintf(output, "& \\cellcolor{green!20}%d ", resultMatrix[i][j].totalValue);
 		}
-		fprintf(output, "\\\\\n");
+		fprintf(output, "\\\\\\hline\n");
 	} 
 
 	fprintf(output, "%s", "\\rowcolor{white}%\n"
-			"\\end{tabular}\\\\\n");
+			"\\end{longtable}\n");
 	fclose(output);
 }
 
@@ -88,19 +88,21 @@ void initializeLatex(void)
 {
 	output = fopen("latex/latex.tex", "w");
 	fprintf(output, "%s\n", 
-			"\\documentclass[12pt]{article}\n\\usepackage[utf8]{inputenc}\n\\usepackage{setspace}\n\\usepackage[utf8]{inputenc}\n"
-			"\\usepackage{natbib}\n"
+			"\\documentclass[12pt]{article}\n\\usepackage[utf8]{inputenc}\n\\usepackage{setspace}\n"
+			"\\usepackage{natbib}\n\\usepackage{array, longtable}\n\n"
 			"\\usepackage{graphicx}\n\\usepackage{natbib}\n\\usepackage{pdflscape}\n\\usepackage{array}\n\\usepackage{wrapfig}"
 			"\\usepackage{multirow}\n\\usepackage{tabu}\n\\usepackage{xcolor}\n\\usepackage{colortbl}\n"
 			"\\setlength\\parindent{20pt}\n\n"
 			"\\title{Proyecto 1: Programaci\\'on Din\\'amica vs. Greedy}\n"
 			"\\author{Manrique J. Dur\\'an V\\'asquez - Randy Morales Gamboa\\\\Investigaci\\'on de Operaciones\\\\}\n"
-			"\\date{\\today}\n\\newcommand\\tab[1][1cm]{\\hspace*{#1}}");
+			"\\date{\\today}\n\\newcommand\\tab[1][1cm]{\\hspace*{#1}}\n\\renewcommand*{\\arraystretch}{1.5}\n");
 
 	fprintf(output,"%s\n\n%s\n", "\\begin{document}",
 			"\n\\maketitle\n\\pagebreak\n");
 
 	fclose(output);
+
+	//\\usepackage[a6paper,vmargin=1cm,hmargin=5mm]{geometry}
 	
 }
 
