@@ -29,40 +29,51 @@
 \section*{Modo Ejemplo}
 
 \textbf{Maximizar:} \\
-\tab$11x_{1} + $ $12x_{2} + $ $3x_{3} + $ $7x_{4} + $ $16x_{5} + $ $10x_{6} + $ $14x_{7}   $ \\\\
+\tab$12x_{1} + $ $7x_{2} + $ $5x_{3} + $ $6x_{4} + $ $7x_{5} + $ $13x_{6} + $ $20x_{7}   $ \\\\
 \textbf{Sujeto a:}\\
-\tab$3x_{1} + $ $6x_{2} + $ $3x_{3} + $ $4x_{4} + $ $1x_{5} + $ $4x_{6} + $ $5x_{7}   $ $\leq 15$\\
+\tab$5x_{1} + $ $6x_{2} + $ $4x_{3} + $ $6x_{4} + $ $5x_{5} + $ $4x_{6} + $ $6x_{7}   $ $\leq 15$\\
 \tab$x_i \geq 0$\subsection*{Programaci\'on Din\'amica}
 \begin{longtable}{|*8{p{0.5cm}|}}
 \rowcolor{white}%
 & $x_{1}$ & $x_{2}$ & $x_{3}$ & $x_{4}$ & $x_{5}$ & $x_{6}$ & $x_{7}$ \\\hline
 $0$ & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 \\\hline
-$1$ & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{green!20}16 & \cellcolor{red!20}16 & \cellcolor{red!20}16 \\\hline
-$2$ & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{green!20}16 & \cellcolor{red!20}16 & \cellcolor{red!20}16 \\\hline
-$3$ & \cellcolor{green!20}11 & \cellcolor{red!20}11 & \cellcolor{red!20}11 & \cellcolor{red!20}11 & \cellcolor{green!20}16 & \cellcolor{red!20}16 & \cellcolor{red!20}16 \\\hline
-$4$ & \cellcolor{green!20}11 & \cellcolor{red!20}11 & \cellcolor{red!20}11 & \cellcolor{red!20}11 & \cellcolor{green!20}27 & \cellcolor{red!20}27 & \cellcolor{red!20}27 \\\hline
-$5$ & \cellcolor{green!20}11 & \cellcolor{red!20}11 & \cellcolor{red!20}11 & \cellcolor{red!20}11 & \cellcolor{green!20}27 & \cellcolor{red!20}27 & \cellcolor{red!20}27 \\\hline
-$6$ & \cellcolor{green!20}11 & \cellcolor{green!20}12 & \cellcolor{green!20}14 & \cellcolor{red!20}14 & \cellcolor{green!20}27 & \cellcolor{red!20}27 & \cellcolor{green!20}30 \\\hline
-$7$ & \cellcolor{green!20}11 & \cellcolor{green!20}12 & \cellcolor{green!20}14 & \cellcolor{green!20}18 & \cellcolor{green!20}30 & \cellcolor{red!20}30 & \cellcolor{red!20}30 \\\hline
-$8$ & \cellcolor{green!20}11 & \cellcolor{green!20}12 & \cellcolor{green!20}14 & \cellcolor{green!20}18 & \cellcolor{green!20}34 & \cellcolor{green!20}37 & \cellcolor{red!20}37 \\\hline
-$9$ & \cellcolor{green!20}11 & \cellcolor{green!20}23 & \cellcolor{red!20}23 & \cellcolor{red!20}23 & \cellcolor{green!20}34 & \cellcolor{green!20}37 & \cellcolor{green!20}41 \\\hline
-$10$ & \cellcolor{green!20}11 & \cellcolor{green!20}23 & \cellcolor{red!20}23 & \cellcolor{red!20}23 & \cellcolor{green!20}39 & \cellcolor{red!20}39 & \cellcolor{green!20}41 \\\hline
-$11$ & \cellcolor{green!20}11 & \cellcolor{green!20}23 & \cellcolor{red!20}23 & \cellcolor{red!20}23 & \cellcolor{green!20}39 & \cellcolor{green!20}40 & \cellcolor{green!20}41 \\\hline
-$12$ & \cellcolor{green!20}11 & \cellcolor{green!20}23 & \cellcolor{green!20}26 & \cellcolor{red!20}26 & \cellcolor{green!20}39 & \cellcolor{green!20}44 & \cellcolor{red!20}44 \\\hline
-$13$ & \cellcolor{green!20}11 & \cellcolor{green!20}23 & \cellcolor{green!20}26 & \cellcolor{green!20}30 & \cellcolor{green!20}42 & \cellcolor{green!20}44 & \cellcolor{green!20}51 \\\hline
-$14$ & \cellcolor{green!20}11 & \cellcolor{green!20}23 & \cellcolor{green!20}26 & \cellcolor{green!20}30 & \cellcolor{green!20}46 & \cellcolor{green!20}49 & \cellcolor{green!20}51 \\\hline
-$15$ & \cellcolor{green!20}11 & \cellcolor{green!20}23 & \cellcolor{green!20}26 & \cellcolor{green!20}30 & \cellcolor{green!20}46 & \cellcolor{green!20}49 & \cellcolor{green!20}53 \\\hline
+$1$ & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 \\\hline
+$2$ & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 \\\hline
+$3$ & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 \\\hline
+$4$ & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{green!20}5 & \cellcolor{red!20}5 & \cellcolor{red!20}5 & \cellcolor{green!20}13 & \cellcolor{red!20}13 \\\hline
+$5$ & \cellcolor{green!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 & \cellcolor{green!20}13 & \cellcolor{red!20}13 \\\hline
+$6$ & \cellcolor{green!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 & \cellcolor{green!20}13 & \cellcolor{green!20}20 \\\hline
+$7$ & \cellcolor{green!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 & \cellcolor{green!20}13 & \cellcolor{green!20}20 \\\hline
+$8$ & \cellcolor{green!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 & \cellcolor{green!20}18 & \cellcolor{green!20}20 \\\hline
+$9$ & \cellcolor{green!20}12 & \cellcolor{red!20}12 & \cellcolor{green!20}17 & \cellcolor{red!20}17 & \cellcolor{red!20}17 & \cellcolor{green!20}25 & \cellcolor{red!20}25 \\\hline
+$10$ & \cellcolor{green!20}12 & \cellcolor{red!20}12 & \cellcolor{green!20}17 & \cellcolor{red!20}17 & \cellcolor{green!20}19 & \cellcolor{green!20}25 & \cellcolor{green!20}33 \\\hline
+$11$ & \cellcolor{green!20}12 & \cellcolor{green!20}19 & \cellcolor{red!20}19 & \cellcolor{red!20}19 & \cellcolor{red!20}19 & \cellcolor{green!20}25 & \cellcolor{green!20}33 \\\hline
+$12$ & \cellcolor{green!20}12 & \cellcolor{green!20}19 & \cellcolor{red!20}19 & \cellcolor{red!20}19 & \cellcolor{red!20}19 & \cellcolor{green!20}25 & \cellcolor{green!20}33 \\\hline
+$13$ & \cellcolor{green!20}12 & \cellcolor{green!20}19 & \cellcolor{red!20}19 & \cellcolor{red!20}19 & \cellcolor{red!20}19 & \cellcolor{green!20}30 & \cellcolor{green!20}33 \\\hline
+$14$ & \cellcolor{green!20}12 & \cellcolor{green!20}19 & \cellcolor{red!20}19 & \cellcolor{red!20}19 & \cellcolor{green!20}24 & \cellcolor{green!20}32 & \cellcolor{green!20}38 \\\hline
+$15$ & \cellcolor{green!20}12 & \cellcolor{green!20}19 & \cellcolor{green!20}24 & \cellcolor{red!20}24 & \cellcolor{red!20}24 & \cellcolor{green!20}32 & \cellcolor{green!20}45 \\\hline
 \rowcolor{white}%
 \end{longtable}
 
 \textbf{Optimal Solution:}\\
-\tab $Z = 53$\\
+\tab $Z = 45$\\
 \tab$x_{1} = 1$\\
-\tab$x_{2} = 1$\\
+\tab$x_{2} = 0$\\
 \tab$x_{3} = 0$\\
 \tab$x_{4} = 0$\\
-\tab$x_{5} = 1$\\
-\tab$x_{6} = 0$\\
+\tab$x_{5} = 0$\\
+\tab$x_{6} = 1$\\
 \tab$x_{7} = 1$\\
-\textbf{Tiempo de Ejecuci\'on: 9.000000 $\mu s$} \\
+\textbf{Tiempo de Ejecuci\'on: 20.000000 $\mu s$} \\
+\subsection*{Simple Greedy}
+\textbf{Solution:}\\
+\tab $Z = 45$\\
+\tab$x_{1} = 1$\\
+\tab$x_{2} = 0$\\
+\tab$x_{3} = 0$\\
+\tab$x_{4} = 0$\\
+\tab$x_{5} = 0$\\
+\tab$x_{6} = 1$\\
+\tab$x_{7} = 1$\\
+\textbf{Tiempo de Ejecuci\'on: 5.000000 $\mu s$} \\
 \end{document}

@@ -4,10 +4,53 @@ int* knapsackDynamicProgrammingAlgorithm(ObjectKind *objKind, int i, int j, int 
 int findOptimalSolution(Object **valuesMatrix, ObjectKind** objectsList, int rows, int columns);
 int* boundedKnapsackDynamicProgrammingAlgorithm(ObjectKind *objKind, int i, int j, int rows, int columns);
 void initializeMatrix(int rows, int columns);
+int knapsack_greedy_simple(ObjectKind *object_list, int sack_capacity, int object_quantity);
 
+Object **objects;	//GENERAL MATRIX
 
-Object **objects;			//GENERAL MATRIX
+int knapsack_greedy_simple(ObjectKind *object_list, int sack_capacity, int object_quantity)
+{
+	int current_weight = 0;
+	int current_best_object_pos;
+	int max_z = 0;
+	ObjectKind *current_best_object = calloc(object_quantity, sizeof(ObjectKind));
+	//ObjectKind *solution;
+	//int solution_len = 0;
+	//solution = calloc(object_quantity, sizeof(ObjectKind));
+	
+	while(current_weight < sack_capacity)
+	{
+		for(int i=0; i<object_quantity; i++)
+		{
+			if((object_list + i) -> taked != 1 && 
+					(object_list + i) -> value > current_best_object -> value)
+			{
+				//current_best_object = (object_list + i);
+				memcpy (current_best_object, (object_list + i), sizeof (current_best_object));
+				current_best_object_pos = i;
+				current_best_object -> taked = i;
+			}
+		}
 
+		if(current_weight + current_best_object -> weight > sack_capacity){
+			break;
+		}
+
+		(object_list + current_best_object_pos) -> taked = 1;
+		current_weight = current_weight + current_best_object -> weight;
+		
+		//memcpy ((solution + solution_len), current_best_object, sizeof (current_best_object));
+		//(solution + solution_len) -> taked = current_best_object -> taked;
+		//solution_len++;
+
+		max_z = max_z + current_best_object -> value;
+		current_best_object -> value = 0;
+		current_best_object -> weight = 0;
+		current_best_object -> taked = 0;	
+	}
+	
+	return max_z;
+}
 
 //ITERATE THE MATRIX CELLS
 int knapsackDynamicProgramming(ObjectKind *objKind, int rows, int columns)
@@ -16,7 +59,6 @@ int knapsackDynamicProgramming(ObjectKind *objKind, int rows, int columns)
 	int *copyValue;
 	initializeMatrix(rows, columns);
 
-	
 	for (int j = 0; j < columns; j++)
 	{
 		for (int i = 0; i < rows; i++)
@@ -79,7 +121,6 @@ int* boundedKnapsackDynamicProgrammingAlgorithm(ObjectKind *objKind, int i, int 
 		
 	}
 }
-
 
 //THIS METHOD CREATE THE TABLE OF KNAPSACL 0/1 BY DYNAMIC PROGRAMMING
 int* knapsackDynamicProgrammingAlgorithm(ObjectKind *objKind, int i, int j, int rows, int columns)
@@ -165,6 +206,3 @@ void initializeMatrix(int rows, int columns)
 		objects[row] = malloc(columns * sizeof(objects[row]));
 	}
 }
-
-
-

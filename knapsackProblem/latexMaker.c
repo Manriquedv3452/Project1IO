@@ -1,6 +1,7 @@
 void createLatexTable(Object **resultMatrix, int rows, int columns);
 void writeProblemMathematically(ObjectKind *obj, int objectsQuantity, int capacity);
 void writeSolution(ObjectKind *solution, int size, int maxZ, double executionTime);
+void write_simple_greedy_solution(ObjectKind * simple_greedy_solution, int size, int max_z, double executionTime);
 void initializeLatex(void);
 void endLatexDocument(void);
 
@@ -81,6 +82,21 @@ void writeSolution(ObjectKind *solution, int size, int maxZ, double executionTim
 	fprintf(output, "\\textbf{Tiempo de Ejecuci\\'on: %2f $\\mu s$} \\\\\n", executionTime);
 
 	fclose(output);	
+}
+
+void write_simple_greedy_solution(ObjectKind *solution, int size, int max_z, double execution_time)
+{
+	output = fopen("latex/latex.tex", "a");
+	fprintf(output, "\\subsection*{Simple Greedy}");
+	fprintf(output, "\n\\textbf{Solution:}\\\\\n\\tab $Z = %d$\\\\\n", max_z);
+	for (int i = 0; i < size; i++)
+	{
+		fprintf(output, "\\tab$x_{%d} = %d$\\\\\n", (i + 1), (solution + i) -> taked);
+	}
+	
+	fprintf(output, "\\textbf{Tiempo de Ejecuci\\'on: %2f $\\mu s$} \\\\\n", execution_time);
+
+	fclose(output);		
 }
 
 //THIS METHOD WRITES THE LATEX HEADER.
