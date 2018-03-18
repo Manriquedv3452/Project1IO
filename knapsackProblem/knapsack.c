@@ -52,6 +52,54 @@ int knapsack_greedy_simple(ObjectKind *object_list, int sack_capacity, int objec
 	return max_z;
 }
 
+int knapsack_greedy_fractional(ObjectKind *object_list, int sack_capacity, int object_quantity)
+{
+	int current_weight = 0;
+	int current_best_object_pos;
+	double current_best_object_p;
+	double current_object_p;
+	int max_z = 0;
+	ObjectKind *current_best_object = calloc(object_quantity, sizeof(ObjectKind));
+
+	int j=0;
+	while(current_weight < sack_capacity)
+	{
+		current_best_object -> weight = 1;
+		for(int i=0; i<object_quantity; i++)
+		{
+			if((object_list + i) -> taked != 1)
+			{
+				current_best_object_p = (double) current_best_object -> value / current_best_object -> weight;
+				current_object_p = (double )(object_list + i) -> value / (object_list + i) -> weight;
+
+				if(current_object_p > current_best_object_p){
+					//current_best_object = (object_list + i);
+					memcpy (current_best_object, (object_list + i), sizeof (current_best_object));
+					current_best_object_pos = i;
+					current_best_object -> taked = i;
+				}
+				
+			}
+		}
+		printf("C.O.P: %2f\n", current_best_object_p);
+
+		if((current_weight + current_best_object -> weight) > sack_capacity){
+			break;
+
+		}else{
+			(object_list + current_best_object_pos) -> taked = 1;
+			current_weight = current_weight + current_best_object -> weight;
+			
+			max_z = max_z + current_best_object -> value;
+			current_best_object -> value = 0;
+			current_best_object -> taked = 0;
+			j++;
+		}
+	}
+	
+	return max_z;
+}
+
 //ITERATE THE MATRIX CELLS
 int knapsackDynamicProgramming(ObjectKind *objKind, int rows, int columns)
 {

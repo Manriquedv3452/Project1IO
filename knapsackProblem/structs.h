@@ -10,4 +10,6 @@ typedef struct objectKind
 	int value;
 	int weight;
 	int taked;
+	float proportion;
+
 } ObjectKind;

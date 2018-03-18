@@ -57,9 +57,10 @@ int beginExample(void)
 	{		
 		(objKinds + i) -> value = rand() % 20 + 1;
 		(objKinds + i) -> weight = rand() % 7 + 1;
+		(objKinds + i) -> proportion = 
+		(objKinds + i) -> value / (objKinds + i) -> weight;
 	}
 
-	//CREATE TABLE
 	begin = clock();
 	maxZ = knapsackDynamicProgramming(objKinds, sackSize + 1, objectsQuantity);
 	end = clock();
@@ -75,11 +76,20 @@ int beginExample(void)
 
 	begin = clock();
 	maxZ = knapsack_greedy_simple(objKinds, sackSize, objectsQuantity);
-	
 	end = clock();
 	executionTime = (double)(end - begin);  //in microSeconds
-	//write_simple_greedy_solution(simple_greedy_solution, executionTime);
 	write_simple_greedy_solution(objKinds, objectsQuantity, maxZ, executionTime);
+	
+	for (int i = 0; i < objectsQuantity; i++)
+	{		
+		(objKinds + i) -> taked = 0;
+	}
+
+	begin = clock();
+	maxZ = knapsack_greedy_fractional(objKinds, sackSize, objectsQuantity);
+	end = clock();
+	executionTime = (double)(end - begin);  //in microSeconds
+	write_fractional_greedy_solution(objKinds, objectsQuantity, maxZ, executionTime);
 	
 	endLatexDocument();
 

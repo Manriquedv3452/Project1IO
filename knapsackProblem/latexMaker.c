@@ -73,7 +73,7 @@ void writeSolution(ObjectKind *solution, int size, int maxZ, double executionTim
 {
 	output = fopen("latex/latex.tex", "a");
 
-	fprintf(output, "\n\\textbf{Optimal Solution:}\\\\\n\\tab $Z = %d$\\\\\n", maxZ);
+	fprintf(output, "\n\\textbf{Soluci\\'o \\'Optima:}\\\\\n\\tab $Z = %d$\\\\\n", maxZ);
 	for (int i = 0; i < size; i++)
 	{
 		fprintf(output, "\\tab$x_{%d} = %d$\\\\\n", (i + 1), (solution + i) -> taked);
@@ -88,10 +88,26 @@ void write_simple_greedy_solution(ObjectKind *solution, int size, int max_z, dou
 {
 	output = fopen("latex/latex.tex", "a");
 	fprintf(output, "\\subsection*{Simple Greedy}");
-	fprintf(output, "\n\\textbf{Solution:}\\\\\n\\tab $Z = %d$\\\\\n", max_z);
+	fprintf(output, "\n\\textbf{Soluci\\'on:}\\\\\n\\tab $Z = %d$\\\\\n", max_z);
 	for (int i = 0; i < size; i++)
 	{
 		fprintf(output, "\\tab$x_{%d} = %d$\\\\\n", (i + 1), (solution + i) -> taked);
+	}
+	
+	fprintf(output, "\\textbf{Tiempo de Ejecuci\\'on: %2f $\\mu s$} \\\\\n", execution_time);
+
+	fclose(output);		
+}
+
+void write_fractional_greedy_solution(ObjectKind *solution, int size, int max_z, double execution_time)
+{
+	output = fopen("latex/latex.tex", "a");
+	fprintf(output, "\\subsection*{Fractional Greedy}");
+	fprintf(output, "\n\\textbf{Soluci\\'on:}\\\\\n\\tab $Z = %d$\\\\\n", max_z);
+	for (int i = 0; i < size; i++)
+	{
+		fprintf(output, "\\tab$x_{%d} = %d$ \\tab$p_{%d} = %2f$\\\\\n", (i + 1), 
+		(solution + i) -> taked, (i + 1), (solution + i) -> proportion);
 	}
 	
 	fprintf(output, "\\textbf{Tiempo de Ejecuci\\'on: %2f $\\mu s$} \\\\\n", execution_time);
@@ -109,13 +125,35 @@ void initializeLatex(void)
 			"\\usepackage{graphicx}\n\\usepackage{natbib}\n\\usepackage{pdflscape}\n\\usepackage{array}\n\\usepackage{wrapfig}"
 			"\\usepackage{multirow}\n\\usepackage{tabu}\n\\usepackage{xcolor}\n\\usepackage{colortbl}\n"
 			"\\setlength\\parindent{20pt}\n\n"
-			"\\title{Proyecto 1: Programaci\\'on Din\\'amica vs. Greedy}\n"
+			"\\renewcommand{\\baselinestretch}{1.5}\n"
+			"\\title{Proyecto 1: Mochila Din\\'amica vs. Mochila Greedy}\n"
 			"\\author{Manrique J. Dur\\'an V\\'asquez - Randy Morales Gamboa\\\\Investigaci\\'on de Operaciones\\\\}\n"
-			"\\date{\\today}\n\\newcommand\\tab[1][1cm]{\\hspace*{#1}}\n\\renewcommand*{\\arraystretch}{1.5}\n");
-
-	fprintf(output,"%s\n\n%s\n", "\\begin{document}",
+			"\\date{\\today}\n\\newcommand\\tab[1][1cm]{\\hspace*{#1}}\n\\renewcommand*{\\arraystretch}{1.5}\n"
+			"\\begin{document}\n"
 			"\n\\maketitle\n\\pagebreak\n");
-
+/*
+	fprintf(output,"\\begin{document}\n"
+			"\\begin{titlepage}\n"
+			"\\centering\n"
+			"\\scshape\n"
+    		"{\\scshape\\Large Instituto Tecnol\\'ogico de Costa Rica \n"
+   			"Escuela de Ingenier\\'ia en Computaci\\'on\n"
+    		"Investigaci\\'on de Operaciones\\\\}\n"
+    		"\\vspace{3\\baselineskip}\n"
+			"\\rule{\\textwidth}{1.6pt}\\vspace*{-\\baselineskip}\\vspace*{2pt}\n"
+			"\\rule{\\textwidth}{0.4pt}\n"
+			"\\vspace{0.75\\baselineskip}\n"
+			"{\\LARGE Proyecto 1: Programaci\\'on Din\\'amica vs. Greedy}\n"
+			"\\vspace{0.75\\baselineskip}\n"
+			"\\rule{\\textwidth}{0.4pt}\\vspace*{-\\baselineskip}\\vspace{3.2pt}\n"
+			"\\rule{\\textwidth}{1.6pt}\n"
+			"\\vspace{3\\baselineskip}\n"
+			"{\\scshape\\Large Estudiantes: Manrique J. Dur\\'an V\\'asquez - Randy Morales Gamboa\n"
+    		"Profesor: Dr. Francisco Torres Rojas\\\\}\n"
+			"\\vspace{2\\baselineskip}\n"
+			"20 de marzo de 2018\n"
+			"\\end{titlepage}\n\n");
+*/
 	fclose(output);
 
 	//\\usepackage[a6paper,vmargin=1cm,hmargin=5mm]{geometry}
