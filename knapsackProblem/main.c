@@ -84,6 +84,26 @@ int beginExample(void)
 
 	//generate objects randomly
 	generateObjects(&objKinds, objectsQuantity, 7, 20);
+	/*(objKinds + 0) -> value =6;
+	(objKinds + 0) -> weight = 3;
+	
+	(objKinds + 1) -> value = 9;
+	(objKinds + 1) -> weight = 3;
+
+	(objKinds + 2) -> value = 6;
+	(objKinds + 2) -> weight = 6;
+
+	(objKinds + 3) -> value = 12;
+	(objKinds + 3) -> weight = 2;
+
+	(objKinds + 4) -> value =6;
+	(objKinds + 4) -> weight = 4;
+
+	(objKinds + 5) -> value = 6;
+	(objKinds + 5) -> weight = 2;*/
+
+	//(objKinds + 6) -> value = 12;
+	//(objKinds + 6) -> weight = 5;
 
 
 	//begin dynamic programming
@@ -186,6 +206,15 @@ int beginExperiment(int n)
 	printf("\nWriting Results in latex document...\n\n");
 	writeExperimentTables(timeMatrixDynamicP, timeMatrixSGreedy, timeMatrixPGreedy,
 				porcentageSGreedy, porcentagePGreedy, n);
+
+	/*for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			printf("%2f\t", timeMatrixDynamicP[i][j]);
+		}
+		printf("\n");
+	}*/
 
 }
 
