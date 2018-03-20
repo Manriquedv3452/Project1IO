@@ -23,67 +23,100 @@
 \begin{document}
 
 \maketitle
+\oddsidemargin=5pt
 \pagebreak
 
-\section*{Modo Ejemplo}
-
-\textbf{Maximizar:} \\
-\tab$20x_{1} + $ $17x_{2} + $ $12x_{3} + $ $2x_{4} + $ $20x_{5} + $ $10x_{6} + $ $10x_{7}   $ \\\\
-\textbf{Sujeto a:}\\
-\tab$6x_{1} + $ $6x_{2} + $ $2x_{3} + $ $1x_{4} + $ $4x_{5} + $ $6x_{6} + $ $7x_{7}   $ $\leq 15$\\
-\tab$x_i \geq 0$\subsection*{Programaci\'on Din\'amica}
-\begin{longtable}{|*8{p{0.5cm}|}}
+\section*{Modo Experimento}
+En este modo se presentan las tablas con el promedio de tiempo de ejecuci\'on en los 100 x 100 casos\\
+\subsection*{Programaci\'on Din\'amica}
+Se presenta la tabla con los promedios de ejecuci\'on de Programaci\'on Din\'amica ($\mu s$)\\
+\subsubsection*{Tabla de Promedios de Tiempo de Ejecuci\'on de Programci\'on Din\'amica}
+\begin{tabu}{|@{}*{11}{p{1.4cm}@{}|}}
 \rowcolor{white}%
-& $x_{1}$ & $x_{2}$ & $x_{3}$ & $x_{4}$ & $x_{5}$ & $x_{6}$ & $x_{7}$ \\\hline
-$0$ & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 \\\hline
-$1$ & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{green!20}2 & \cellcolor{red!20}2 & \cellcolor{red!20}2 & \cellcolor{red!20}2 \\\hline
-$2$ & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{green!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 & \cellcolor{red!20}12 \\\hline
-$3$ & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{green!20}12 & \cellcolor{green!20}14 & \cellcolor{red!20}14 & \cellcolor{red!20}14 & \cellcolor{red!20}14 \\\hline
-$4$ & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{green!20}12 & \cellcolor{green!20}14 & \cellcolor{green!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 \\\hline
-$5$ & \cellcolor{red!20}0 & \cellcolor{red!20}0 & \cellcolor{green!20}12 & \cellcolor{green!20}14 & \cellcolor{green!20}22 & \cellcolor{red!20}22 & \cellcolor{red!20}22 \\\hline
-$6$ & \cellcolor{green!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 & \cellcolor{green!20}32 & \cellcolor{red!20}32 & \cellcolor{red!20}32 \\\hline
-$7$ & \cellcolor{green!20}20 & \cellcolor{red!20}20 & \cellcolor{red!20}20 & \cellcolor{green!20}22 & \cellcolor{green!20}34 & \cellcolor{red!20}34 & \cellcolor{red!20}34 \\\hline
-$8$ & \cellcolor{green!20}20 & \cellcolor{red!20}20 & \cellcolor{green!20}32 & \cellcolor{red!20}32 & \cellcolor{green!20}34 & \cellcolor{red!20}34 & \cellcolor{red!20}34 \\\hline
-$9$ & \cellcolor{green!20}20 & \cellcolor{red!20}20 & \cellcolor{green!20}32 & \cellcolor{green!20}34 & \cellcolor{red!20}34 & \cellcolor{red!20}34 & \cellcolor{red!20}34 \\\hline
-$10$ & \cellcolor{green!20}20 & \cellcolor{red!20}20 & \cellcolor{green!20}32 & \cellcolor{green!20}34 & \cellcolor{green!20}40 & \cellcolor{red!20}40 & \cellcolor{red!20}40 \\\hline
-$11$ & \cellcolor{green!20}20 & \cellcolor{red!20}20 & \cellcolor{green!20}32 & \cellcolor{green!20}34 & \cellcolor{green!20}42 & \cellcolor{red!20}42 & \cellcolor{red!20}42 \\\hline
-$12$ & \cellcolor{green!20}20 & \cellcolor{green!20}37 & \cellcolor{red!20}37 & \cellcolor{red!20}37 & \cellcolor{green!20}52 & \cellcolor{red!20}52 & \cellcolor{red!20}52 \\\hline
-$13$ & \cellcolor{green!20}20 & \cellcolor{green!20}37 & \cellcolor{red!20}37 & \cellcolor{green!20}39 & \cellcolor{green!20}54 & \cellcolor{red!20}54 & \cellcolor{red!20}54 \\\hline
-$14$ & \cellcolor{green!20}20 & \cellcolor{green!20}37 & \cellcolor{green!20}49 & \cellcolor{red!20}49 & \cellcolor{green!20}54 & \cellcolor{red!20}54 & \cellcolor{red!20}54 \\\hline
-$15$ & \cellcolor{green!20}20 & \cellcolor{green!20}37 & \cellcolor{green!20}49 & \cellcolor{green!20}51 & \cellcolor{green!20}54 & \cellcolor{red!20}54 & \cellcolor{red!20}54 \\\hline
+& $10$ & $20$ & $30$ & $40$ & $50$ & $60$ & $70$ & $80$ & $90$ & $100$ \\\hline
+$100$ & \cellcolor{yellow!20}$21.07$ & \cellcolor{yellow!20}$37.42$ & \cellcolor{yellow!20}$53.86$ & \cellcolor{yellow!20}$70.01$ & \cellcolor{yellow!20}$85.24$ & \cellcolor{yellow!20}$101.01$ & \cellcolor{yellow!20}$117.68$ & \cellcolor{yellow!20}$134.14$ & \cellcolor{yellow!20}$149.75$ & \cellcolor{yellow!20}$165.16$ \\\hline
+$200$ & \cellcolor{yellow!20}$38.04$ & \cellcolor{yellow!20}$70.18$ & \cellcolor{yellow!20}$103.67$ & \cellcolor{yellow!20}$134.80$ & \cellcolor{yellow!20}$166.73$ & \cellcolor{yellow!20}$198.73$ & \cellcolor{yellow!20}$232.85$ & \cellcolor{yellow!20}$264.04$ & \cellcolor{yellow!20}$299.32$ & \cellcolor{yellow!20}$330.21$ \\\hline
+$300$ & \cellcolor{yellow!20}$56.01$ & \cellcolor{yellow!20}$105.58$ & \cellcolor{yellow!20}$156.07$ & \cellcolor{yellow!20}$202.98$ & \cellcolor{yellow!20}$247.73$ & \cellcolor{yellow!20}$291.38$ & \cellcolor{yellow!20}$332.21$ & \cellcolor{yellow!20}$384.93$ & \cellcolor{yellow!20}$428.23$ & \cellcolor{yellow!20}$477.75$ \\\hline
+$400$ & \cellcolor{yellow!20}$71.73$ & \cellcolor{yellow!20}$133.93$ & \cellcolor{yellow!20}$198.93$ & \cellcolor{yellow!20}$258.41$ & \cellcolor{yellow!20}$318.16$ & \cellcolor{yellow!20}$386.74$ & \cellcolor{yellow!20}$442.11$ & \cellcolor{yellow!20}$512.54$ & \cellcolor{yellow!20}$572.80$ & \cellcolor{yellow!20}$640.88$ \\\hline
+$500$ & \cellcolor{yellow!20}$90.78$ & \cellcolor{yellow!20}$168.47$ & \cellcolor{yellow!20}$248.31$ & \cellcolor{yellow!20}$324.47$ & \cellcolor{yellow!20}$398.99$ & \cellcolor{yellow!20}$480.75$ & \cellcolor{yellow!20}$551.52$ & \cellcolor{yellow!20}$643.40$ & \cellcolor{yellow!20}$713.25$ & \cellcolor{yellow!20}$803.06$ \\\hline
+$600$ & \cellcolor{yellow!20}$108.66$ & \cellcolor{yellow!20}$200.21$ & \cellcolor{yellow!20}$293.17$ & \cellcolor{yellow!20}$383.59$ & \cellcolor{yellow!20}$477.92$ & \cellcolor{yellow!20}$571.92$ & \cellcolor{yellow!20}$666.53$ & \cellcolor{yellow!20}$775.13$ & \cellcolor{yellow!20}$860.96$ & \cellcolor{yellow!20}$968.48$ \\\hline
+$700$ & \cellcolor{yellow!20}$126.20$ & \cellcolor{yellow!20}$235.50$ & \cellcolor{yellow!20}$345.55$ & \cellcolor{yellow!20}$450.36$ & \cellcolor{yellow!20}$556.81$ & \cellcolor{yellow!20}$671.08$ & \cellcolor{yellow!20}$778.68$ & \cellcolor{yellow!20}$903.39$ & \cellcolor{yellow!20}$1003.93$ & \cellcolor{yellow!20}$1133.60$ \\\hline
+$800$ & \cellcolor{yellow!20}$144.71$ & \cellcolor{yellow!20}$266.52$ & \cellcolor{yellow!20}$395.74$ & \cellcolor{yellow!20}$514.39$ & \cellcolor{yellow!20}$640.50$ & \cellcolor{yellow!20}$768.83$ & \cellcolor{yellow!20}$894.36$ & \cellcolor{yellow!20}$1038.76$ & \cellcolor{yellow!20}$1154.34$ & \cellcolor{yellow!20}$1300.43$ \\\hline
+$900$ & \cellcolor{yellow!20}$163.29$ & \cellcolor{yellow!20}$301.70$ & \cellcolor{yellow!20}$443.48$ & \cellcolor{yellow!20}$581.09$ & \cellcolor{yellow!20}$723.77$ & \cellcolor{yellow!20}$867.95$ & \cellcolor{yellow!20}$1011.26$ & \cellcolor{yellow!20}$1172.36$ & \cellcolor{yellow!20}$1304.24$ & \cellcolor{yellow!20}$1471.14$ \\\hline
+$1000$ & \cellcolor{yellow!20}$182.08$ & \cellcolor{yellow!20}$335.67$ & \cellcolor{yellow!20}$494.45$ & \cellcolor{yellow!20}$646.35$ & \cellcolor{yellow!20}$803.32$ & \cellcolor{yellow!20}$966.71$ & \cellcolor{yellow!20}$1121.79$ & \cellcolor{yellow!20}$1297.89$ & \cellcolor{yellow!20}$1445.16$ & \cellcolor{yellow!20}$1623.21$ \\\hline
 \rowcolor{white}%
-\end{longtable}
-
-\textbf{Soluci\'o \'Optima:}\\
-\tab $Z = 54$\\
-\tab$x_{1} = 1$\\
-\tab$x_{2} = 0$\\
-\tab$x_{3} = 1$\\
-\tab$x_{4} = 1$\\
-\tab$x_{5} = 1$\\
-\tab$x_{6} = 0$\\
-\tab$x_{7} = 0$\\
-\textbf{Tiempo de Ejecuci\'on: 19.000000 $\mu s$} \\
-\subsection*{Simple Greedy}
-\textbf{Soluci\'on:}\\
-\tab $Z = 40$\\
-\tab$x_{1} = 1$\\
-\tab$x_{2} = 0$\\
-\tab$x_{3} = 0$\\
-\tab$x_{4} = 0$\\
-\tab$x_{5} = 1$\\
-\tab$x_{6} = 0$\\
-\tab$x_{7} = 0$\\
-\textbf{Tiempo de Ejecuci\'on: 4.000000 $\mu s$} \\
-\subsection*{Fractional Greedy}
-\textbf{Soluci\'on:}\\
-\tab $Z = 52$\\
-\tab$x_{1} = 1$ \tab$p_{1} = 3.000000$\\
-\tab$x_{2} = 0$ \tab$p_{2} = 2.000000$\\
-\tab$x_{3} = 1$ \tab$p_{3} = 6.000000$\\
-\tab$x_{4} = 0$ \tab$p_{4} = 2.000000$\\
-\tab$x_{5} = 1$ \tab$p_{5} = 5.000000$\\
-\tab$x_{6} = 0$ \tab$p_{6} = 1.000000$\\
-\tab$x_{7} = 0$ \tab$p_{7} = 1.000000$\\
-\textbf{Tiempo de Ejecuci\'on: 56.000000 $\mu s$} \\
+\end{tabu}
+\pagebreak
+\subsection*{Algoritmo Greedy Simple}
+Se presenta la tabla con los promedios de ejecuci\'on y porcentaje de soluci\'on \'optima del Greedy Simple ($\mu s$)\\
+\subsubsection*{Tabla de Promedios de Tiempo de Ejecuci\'on del Greedy Simple}
+\begin{tabu}{|@{}*{11}{p{1.4cm}@{}|}}
+\rowcolor{white}%
+& $10$ & $20$ & $30$ & $40$ & $50$ & $60$ & $70$ & $80$ & $90$ & $100$ \\\hline
+$100$ & \cellcolor{yellow!20}$0.88$ & \cellcolor{yellow!20}$1.19$ & \cellcolor{yellow!20}$1.23$ & \cellcolor{yellow!20}$1.45$ & \cellcolor{yellow!20}$1.65$ & \cellcolor{yellow!20}$1.93$ & \cellcolor{yellow!20}$2.17$ & \cellcolor{yellow!20}$2.30$ & \cellcolor{yellow!20}$2.47$ & \cellcolor{yellow!20}$2.65$ \\\hline
+$200$ & \cellcolor{yellow!20}$0.92$ & \cellcolor{yellow!20}$0.99$ & \cellcolor{yellow!20}$1.19$ & \cellcolor{yellow!20}$1.30$ & \cellcolor{yellow!20}$1.53$ & \cellcolor{yellow!20}$1.83$ & \cellcolor{yellow!20}$1.92$ & \cellcolor{yellow!20}$2.17$ & \cellcolor{yellow!20}$2.35$ & \cellcolor{yellow!20}$2.58$ \\\hline
+$300$ & \cellcolor{yellow!20}$0.95$ & \cellcolor{yellow!20}$1.06$ & \cellcolor{yellow!20}$1.27$ & \cellcolor{yellow!20}$1.46$ & \cellcolor{yellow!20}$1.55$ & \cellcolor{yellow!20}$1.63$ & \cellcolor{yellow!20}$1.83$ & \cellcolor{yellow!20}$2.04$ & \cellcolor{yellow!20}$2.36$ & \cellcolor{yellow!20}$2.38$ \\\hline
+$400$ & \cellcolor{yellow!20}$0.87$ & \cellcolor{yellow!20}$1.12$ & \cellcolor{yellow!20}$1.22$ & \cellcolor{yellow!20}$1.45$ & \cellcolor{yellow!20}$1.71$ & \cellcolor{yellow!20}$1.78$ & \cellcolor{yellow!20}$2.00$ & \cellcolor{yellow!20}$2.32$ & \cellcolor{yellow!20}$2.55$ & \cellcolor{yellow!20}$2.78$ \\\hline
+$500$ & \cellcolor{yellow!20}$1.01$ & \cellcolor{yellow!20}$1.24$ & \cellcolor{yellow!20}$1.46$ & \cellcolor{yellow!20}$1.88$ & \cellcolor{yellow!20}$1.94$ & \cellcolor{yellow!20}$2.13$ & \cellcolor{yellow!20}$2.38$ & \cellcolor{yellow!20}$2.80$ & \cellcolor{yellow!20}$2.99$ & \cellcolor{yellow!20}$3.08$ \\\hline
+$600$ & \cellcolor{yellow!20}$0.84$ & \cellcolor{yellow!20}$1.01$ & \cellcolor{yellow!20}$1.14$ & \cellcolor{yellow!20}$1.37$ & \cellcolor{yellow!20}$1.66$ & \cellcolor{yellow!20}$1.79$ & \cellcolor{yellow!20}$2.02$ & \cellcolor{yellow!20}$2.36$ & \cellcolor{yellow!20}$2.46$ & \cellcolor{yellow!20}$2.78$ \\\hline
+$700$ & \cellcolor{yellow!20}$0.82$ & \cellcolor{yellow!20}$1.08$ & \cellcolor{yellow!20}$1.19$ & \cellcolor{yellow!20}$1.64$ & \cellcolor{yellow!20}$1.82$ & \cellcolor{yellow!20}$2.08$ & \cellcolor{yellow!20}$2.35$ & \cellcolor{yellow!20}$2.54$ & \cellcolor{yellow!20}$2.79$ & \cellcolor{yellow!20}$3.00$ \\\hline
+$800$ & \cellcolor{yellow!20}$0.81$ & \cellcolor{yellow!20}$1.01$ & \cellcolor{yellow!20}$1.19$ & \cellcolor{yellow!20}$1.37$ & \cellcolor{yellow!20}$1.71$ & \cellcolor{yellow!20}$1.91$ & \cellcolor{yellow!20}$2.21$ & \cellcolor{yellow!20}$2.37$ & \cellcolor{yellow!20}$2.52$ & \cellcolor{yellow!20}$2.97$ \\\hline
+$900$ & \cellcolor{yellow!20}$0.96$ & \cellcolor{yellow!20}$1.31$ & \cellcolor{yellow!20}$1.51$ & \cellcolor{yellow!20}$1.67$ & \cellcolor{yellow!20}$1.81$ & \cellcolor{yellow!20}$2.13$ & \cellcolor{yellow!20}$2.43$ & \cellcolor{yellow!20}$2.76$ & \cellcolor{yellow!20}$3.02$ & \cellcolor{yellow!20}$3.41$ \\\hline
+$1000$ & \cellcolor{yellow!20}$0.94$ & \cellcolor{yellow!20}$1.25$ & \cellcolor{yellow!20}$1.50$ & \cellcolor{yellow!20}$1.74$ & \cellcolor{yellow!20}$1.96$ & \cellcolor{yellow!20}$2.04$ & \cellcolor{yellow!20}$2.20$ & \cellcolor{yellow!20}$2.55$ & \cellcolor{yellow!20}$2.85$ & \cellcolor{yellow!20}$3.00$ \\\hline
+\rowcolor{white}%
+\end{tabu}
+\pagebreak
+\subsubsection*{Tabla de Porcentajes de coincidencia del Greedy Simple}
+\begin{tabu}{|@{}*{11}{p{1.4cm}@{}|}}
+\rowcolor{white}%
+& $10$ & $20$ & $30$ & $40$ & $50$ & $60$ & $70$ & $80$ & $90$ & $100$ \\\hline
+$100$ & \cellcolor{yellow!20}$0.41$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ \\\hline
+$200$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ \\\hline
+$300$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ \\\hline
+$400$ & \cellcolor{yellow!20}$0.38$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ \\\hline
+$500$ & \cellcolor{yellow!20}$0.40$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ \\\hline
+$600$ & \cellcolor{yellow!20}$0.17$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ \\\hline
+$700$ & \cellcolor{yellow!20}$0.22$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ \\\hline
+$800$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ \\\hline
+$900$ & \cellcolor{yellow!20}$0.03$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ \\\hline
+$1000$ & \cellcolor{yellow!20}$0.37$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ \\\hline
+\rowcolor{white}%
+\end{tabu}
+\pagebreak
+\subsection*{Algoritmo Greedy Proporcional}
+Se presenta la tabla con los promedios de ejecuci\'on y porcentaje de soluci\'on \'optima del Greedy Proporcional ($\mu s$)\\
+\subsubsection*{Tabla de Promedios de Tiempo de Ejecuci\'on del Greedy Proporcional}
+\begin{tabu}{|@{}*{11}{p{1.4cm}@{}|}}
+\rowcolor{white}%
+& $10$ & $20$ & $30$ & $40$ & $50$ & $60$ & $70$ & $80$ & $90$ & $100$ \\\hline
+$100$ & \cellcolor{yellow!20}$1.35$ & \cellcolor{yellow!20}$2.42$ & \cellcolor{yellow!20}$3.65$ & \cellcolor{yellow!20}$4.78$ & \cellcolor{yellow!20}$6.52$ & \cellcolor{yellow!20}$8.75$ & \cellcolor{yellow!20}$10.46$ & \cellcolor{yellow!20}$12.04$ & \cellcolor{yellow!20}$14.32$ & \cellcolor{yellow!20}$16.48$ \\\hline
+$200$ & \cellcolor{yellow!20}$1.37$ & \cellcolor{yellow!20}$2.38$ & \cellcolor{yellow!20}$3.59$ & \cellcolor{yellow!20}$4.92$ & \cellcolor{yellow!20}$6.51$ & \cellcolor{yellow!20}$8.42$ & \cellcolor{yellow!20}$9.63$ & \cellcolor{yellow!20}$11.79$ & \cellcolor{yellow!20}$13.87$ & \cellcolor{yellow!20}$16.35$ \\\hline
+$300$ & \cellcolor{yellow!20}$1.35$ & \cellcolor{yellow!20}$2.60$ & \cellcolor{yellow!20}$3.66$ & \cellcolor{yellow!20}$4.81$ & \cellcolor{yellow!20}$6.41$ & \cellcolor{yellow!20}$8.14$ & \cellcolor{yellow!20}$9.82$ & \cellcolor{yellow!20}$11.55$ & \cellcolor{yellow!20}$13.49$ & \cellcolor{yellow!20}$15.63$ \\\hline
+$400$ & \cellcolor{yellow!20}$1.24$ & \cellcolor{yellow!20}$2.30$ & \cellcolor{yellow!20}$3.78$ & \cellcolor{yellow!20}$4.92$ & \cellcolor{yellow!20}$6.29$ & \cellcolor{yellow!20}$8.20$ & \cellcolor{yellow!20}$9.61$ & \cellcolor{yellow!20}$11.78$ & \cellcolor{yellow!20}$13.61$ & \cellcolor{yellow!20}$15.64$ \\\hline
+$500$ & \cellcolor{yellow!20}$1.42$ & \cellcolor{yellow!20}$2.38$ & \cellcolor{yellow!20}$3.70$ & \cellcolor{yellow!20}$5.13$ & \cellcolor{yellow!20}$6.59$ & \cellcolor{yellow!20}$8.34$ & \cellcolor{yellow!20}$10.39$ & \cellcolor{yellow!20}$13.07$ & \cellcolor{yellow!20}$15.09$ & \cellcolor{yellow!20}$17.29$ \\\hline
+$600$ & \cellcolor{yellow!20}$1.25$ & \cellcolor{yellow!20}$2.32$ & \cellcolor{yellow!20}$3.52$ & \cellcolor{yellow!20}$4.95$ & \cellcolor{yellow!20}$6.57$ & \cellcolor{yellow!20}$7.94$ & \cellcolor{yellow!20}$9.63$ & \cellcolor{yellow!20}$11.55$ & \cellcolor{yellow!20}$13.20$ & \cellcolor{yellow!20}$15.09$ \\\hline
+$700$ & \cellcolor{yellow!20}$1.21$ & \cellcolor{yellow!20}$2.24$ & \cellcolor{yellow!20}$3.46$ & \cellcolor{yellow!20}$4.94$ & \cellcolor{yellow!20}$6.12$ & \cellcolor{yellow!20}$8.37$ & \cellcolor{yellow!20}$9.86$ & \cellcolor{yellow!20}$11.88$ & \cellcolor{yellow!20}$13.86$ & \cellcolor{yellow!20}$16.17$ \\\hline
+$800$ & \cellcolor{yellow!20}$1.22$ & \cellcolor{yellow!20}$2.17$ & \cellcolor{yellow!20}$3.51$ & \cellcolor{yellow!20}$4.42$ & \cellcolor{yellow!20}$6.14$ & \cellcolor{yellow!20}$7.56$ & \cellcolor{yellow!20}$9.58$ & \cellcolor{yellow!20}$11.74$ & \cellcolor{yellow!20}$14.38$ & \cellcolor{yellow!20}$16.20$ \\\hline
+$900$ & \cellcolor{yellow!20}$1.29$ & \cellcolor{yellow!20}$2.34$ & \cellcolor{yellow!20}$3.57$ & \cellcolor{yellow!20}$5.21$ & \cellcolor{yellow!20}$7.04$ & \cellcolor{yellow!20}$8.90$ & \cellcolor{yellow!20}$10.83$ & \cellcolor{yellow!20}$12.85$ & \cellcolor{yellow!20}$14.53$ & \cellcolor{yellow!20}$17.36$ \\\hline
+$1000$ & \cellcolor{yellow!20}$1.26$ & \cellcolor{yellow!20}$2.44$ & \cellcolor{yellow!20}$3.56$ & \cellcolor{yellow!20}$4.85$ & \cellcolor{yellow!20}$6.61$ & \cellcolor{yellow!20}$7.98$ & \cellcolor{yellow!20}$10.11$ & \cellcolor{yellow!20}$12.97$ & \cellcolor{yellow!20}$15.69$ & \cellcolor{yellow!20}$17.64$ \\\hline
+\rowcolor{white}%
+\end{tabu}
+\pagebreak
+\subsubsection*{Tabla de Porcentajes de coincidencia del Greedy Proporcional}
+\begin{tabu}{|@{}*{11}{p{1.4cm}@{}|}}
+\rowcolor{white}%
+& $10$ & $20$ & $30$ & $40$ & $50$ & $60$ & $70$ & $80$ & $90$ & $100$ \\\hline
+$100$ & \cellcolor{green!20}$0.62$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{green!20}$0.79$ & \cellcolor{yellow!20}$0.38$ & \cellcolor{red!20}$0.00$ & \cellcolor{yellow!20}$0.21$ & \cellcolor{green!20}$0.60$ & \cellcolor{green!20}$0.61$ & \cellcolor{red!20}$0.00$ & \cellcolor{yellow!20}$0.18$ \\\hline
+$200$ & \cellcolor{yellow!20}$0.21$ & \cellcolor{red!20}$0.00$ & \cellcolor{yellow!20}$0.02$ & \cellcolor{green!20}$0.58$ & \cellcolor{yellow!20}$0.21$ & \cellcolor{green!20}$0.78$ & \cellcolor{green!20}$0.58$ & \cellcolor{red!20}$0.00$ & \cellcolor{yellow!20}$0.21$ & \cellcolor{yellow!20}$0.43$ \\\hline
+$300$ & \cellcolor{yellow!20}$0.40$ & \cellcolor{yellow!20}$0.18$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{yellow!20}$0.02$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{yellow!20}$0.39$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{red!20}$0.00$ & \cellcolor{yellow!20}$0.22$ \\\hline
+$400$ & \cellcolor{green!20}$0.78$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{red!20}$0.00$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{yellow!20}$0.39$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ \\\hline
+$500$ & \cellcolor{green!20}$0.59$ & \cellcolor{green!20}$0.57$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{yellow!20}$0.41$ & \cellcolor{red!20}$0.00$ & \cellcolor{green!20}$0.61$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{yellow!20}$0.41$ & \cellcolor{yellow!20}$0.02$ \\\hline
+$600$ & \cellcolor{yellow!20}$0.41$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{yellow!20}$0.41$ & \cellcolor{yellow!20}$0.37$ & \cellcolor{green!20}$0.57$ & \cellcolor{yellow!20}$0.37$ & \cellcolor{yellow!20}$0.02$ & \cellcolor{yellow!20}$0.02$ & \cellcolor{red!20}$0.00$ & \cellcolor{yellow!20}$0.17$ \\\hline
+$700$ & \cellcolor{green!20}$0.63$ & \cellcolor{yellow!20}$0.22$ & \cellcolor{red!20}$0.00$ & \cellcolor{yellow!20}$0.02$ & \cellcolor{yellow!20}$0.17$ & \cellcolor{red!20}$0.00$ & \cellcolor{yellow!20}$0.22$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ \\\hline
+$800$ & \cellcolor{yellow!20}$0.22$ & \cellcolor{yellow!20}$0.17$ & \cellcolor{yellow!20}$0.02$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ \\\hline
+$900$ & \cellcolor{yellow!20}$0.43$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{yellow!20}$0.40$ & \cellcolor{red!20}$0.00$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{yellow!20}$0.37$ & \cellcolor{red!20}$0.00$ \\\hline
+$1000$ & \cellcolor{yellow!20}$0.23$ & \cellcolor{yellow!20}$0.40$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{yellow!20}$0.43$ & \cellcolor{red!20}$0.00$ & \cellcolor{red!20}$0.00$ & \cellcolor{yellow!20}$0.20$ & \cellcolor{yellow!20}$0.17$ & \cellcolor{yellow!20}$0.20$ \\\hline
+\rowcolor{white}%
+\end{tabu}
+\pagebreak
 \end{document}

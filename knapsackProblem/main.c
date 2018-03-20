@@ -7,7 +7,15 @@
 #include "latexMaker.c"
 
 int beginExample(void);
-void printExampleProblem(int objectsQuantity);
+int verifyAgumentExperiment(char *argv[]);
+void printExampleProblem(ObjectKind *objKinds, int objectsQuantity);
+void clearTakedObjects(ObjectKind **obj_list, int objectsQuantity);
+int beginExperiment(int n);
+void generateObjects(ObjectKind **objectsList, int objectsQuantity, int capacityLimit, int valueLimit);
+double startDynamicProgramming(ObjectKind *objKinds, int sackSize, int objectsQuantity, int *maxZ);
+double startSimpleGreedy(ObjectKind *objKinds, int sackSize, int objectsQuantity, int *maxZ);
+double startProportionalGreedy(ObjectKind *objKinds, int sackSize, int objectsQuantity, int *maxZ);
+void initializeMatrixCases(double *matrix[], int rows, int columns);
 
 int main(int argc, char* argv[])
 {
@@ -19,13 +27,18 @@ int main(int argc, char* argv[])
 		{
 			//printf("ARGUMENT GETED\n");
 			beginExample();
-			system("pdflatex -output-directory latex latex/latex.tex");
-			system("evince -s latex/latex.pdf");
 		}
 		else if (strstr(argv[1], "-E") != NULL)
 		{
-			printf("ARGUMENT 2 GETED\n");
+			//printf("ARGUMENT 2 GETED\n");
+			int n = 100;
+			beginExperiment(n);
+			
+			//if (verifyAgumentExperiment(argv)){printf("HOLA\n");}
 		}
+		endLatexDocument();
+		system("pdflatex -output-directory latex latex/latex.tex");
+		system("evince -s latex/latex.pdf");
 	}
 	
 
@@ -41,62 +54,236 @@ int main(int argc, char* argv[])
 int beginExample(void)
 {
 	int sackSize = 15; 
-	int objectsQuantity = 7;
+	int objectsQuantity = 6;
 	int maxZ;
 	clock_t begin;
 	clock_t end;
 	double executionTime;
-	srand ( time(NULL) );	//seed of randoms
 
 	ObjectKind *objKinds;
 	objKinds = calloc(objectsQuantity, sizeof(ObjectKind));
 	ObjectKind *simple_greedy_solution;
 	simple_greedy_solution = calloc(objectsQuantity, sizeof(ObjectKind));
 
-	for (int i = 0; i < objectsQuantity; i++)
-	{		
-		(objKinds + i) -> value = rand() % 20 + 1;
-		(objKinds + i) -> weight = rand() % 7 + 1;
-		(objKinds + i) -> proportion = 
-		(objKinds + i) -> value / (objKinds + i) -> weight;
-	}
 
-	begin = clock();
-	maxZ = knapsackDynamicProgramming(objKinds, sackSize + 1, objectsQuantity);
-	end = clock();
-	executionTime = (double)(end - begin);  //in microSeconds
+	//generate objects randomly
+	generateObjects(&objKinds, objectsQuantity, 7, 20);
+	/*(objKinds + 0) -> value =7;
+	(objKinds + 0) -> weight = 3;
+	
+	(objKinds + 1) -> value = 9;
+	(objKinds + 1) -> weight = 4;
+
+	(objKinds + 2) -> value = 5;
+	(objKinds + 2) -> weight = 2;
+
+	(objKinds + 3) -> value = 12;
+	(objKinds + 3) -> weight = 6;
+
+	(objKinds + 4) -> value = 14;
+	(objKinds + 4) -> weight = 7;
+
+	(objKinds + 5) -> value = 6;
+	(objKinds + 5) -> weight = 3;
+
+	(objKinds + 6) -> value = 12;
+	(objKinds + 6) -> weight = 5;*/
+
+
+	//begin dynamic programming
+	executionTime = startDynamicProgramming(objKinds, sackSize, objectsQuantity, &maxZ); //modify maxZ value
+
 	writeProblemMathematically(objKinds, objectsQuantity, sackSize);
 	createLatexTable(objects, sackSize + 1, objectsQuantity);
 	writeSolution(objKinds, objectsQuantity, maxZ, executionTime);
 	
-	for (int i = 0; i < objectsQuantity; i++)
-	{		
-		(objKinds + i) -> taked = 0;
-	}
+	clearTakedObjects(&objKinds, objectsQuantity);
 
-	begin = clock();
-	maxZ = knapsack_greedy_simple(objKinds, sackSize, objectsQuantity);
-	end = clock();
-	executionTime = (double)(end - begin);  //in microSeconds
+
+	//egin simple greedy
+	executionTime = startSimpleGreedy(objKinds, sackSize, objectsQuantity, &maxZ);
 	write_simple_greedy_solution(objKinds, objectsQuantity, maxZ, executionTime);
 	
-	for (int i = 0; i < objectsQuantity; i++)
-	{		
-		(objKinds + i) -> taked = 0;
-	}
+	clearTakedObjects(&objKinds, objectsQuantity);
 
-	begin = clock();
-	maxZ = knapsack_greedy_fractional(objKinds, sackSize, objectsQuantity);
-	end = clock();
-	executionTime = (double)(end - begin);  //in microSeconds
+
+	//begin proportional greedy
+
+	executionTime = startProportionalGreedy(objKinds, sackSize, objectsQuantity, &maxZ);
 	write_fractional_greedy_solution(objKinds, objectsQuantity, maxZ, executionTime);
 	
-	endLatexDocument();
 
 	return 1;
 }   
-/*
-void printExampleProblem(int objectsQuantity)
+
+int beginExperiment(int n)
+{
+	int maxZDynamicProgramming;
+	int maxZ;
+	int sackCapacity = 100;
+	int objectsQuantity = 10;
+	double casesNum = n;
+
+	ObjectKind *objKinds = malloc(objectsQuantity * sizeof(ObjectKind));
+
+	double timeMatrixDynamicP[10][10];
+	double timeMatrixSGreedy[10][10];
+	double timeMatrixPGreedy[10][10];
+	double porcentageSGreedy[10][10];
+	double porcentagePGreedy[10][10];
+
+	for (int i = 0; i < 10; i ++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			timeMatrixDynamicP[i][j] = 0;
+			timeMatrixSGreedy[i][j] = 0;
+			timeMatrixPGreedy[i][j] = 0;
+			porcentageSGreedy[i][j] = 0;
+			porcentagePGreedy[i][j] = 0;
+		}
+	}
+
+	
+	printf("\nCalculating execution time and porcentage of the algorithms in 100 * %d cases...\n\n", n);
+	int row, column;
+	for (int i = n; i != 0; i--)
+	{
+		row = column = 0;
+		for (sackCapacity = 100; sackCapacity <= 1000; sackCapacity += 100)
+		{
+			for (objectsQuantity = 10; objectsQuantity <= 100; objectsQuantity += 10)
+			{
+			
+				objKinds = realloc(objKinds, objectsQuantity * sizeof(ObjectKind));
+
+				//generate Objects 
+				generateObjects(&objKinds, objectsQuantity, sackCapacity * 0.4, 100); 
+	
+
+				timeMatrixDynamicP[row][column] += 
+					startDynamicProgramming(objKinds, sackCapacity, objectsQuantity, &maxZDynamicProgramming)/casesNum;
+	
+				clearTakedObjects(&objKinds, objectsQuantity);
+				timeMatrixSGreedy[row][column] += startSimpleGreedy(objKinds, sackCapacity, objectsQuantity, &maxZ)/casesNum;
+				clearTakedObjects(&objKinds, objectsQuantity);
+
+				if (maxZ == maxZDynamicProgramming)
+					porcentageSGreedy[row][column] += 1.0 / casesNum;
+
+				timeMatrixPGreedy[row][column] += startProportionalGreedy(objKinds, sackCapacity, objectsQuantity, &maxZ)/casesNum;
+				
+				if (maxZ == maxZDynamicProgramming)
+					porcentagePGreedy[row][column] += 1.0 / casesNum;
+				
+				
+
+
+				column++;
+
+			}
+			column = 0;
+			row++;
+		}
+	}
+
+	printf("\nWriting Results in latex document...\n\n");
+	writeExperimentTables(timeMatrixDynamicP, timeMatrixSGreedy, timeMatrixPGreedy,
+				porcentageSGreedy, porcentagePGreedy, n);
+
+	/*for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			printf("%2f\t", timeMatrixDynamicP[i][j]);
+		}
+		printf("\n");
+	}*/
+
+}
+
+
+void generateObjects(ObjectKind **objectsList, int objectsQuantity, int capacityLimit, int valueLimit)
+{
+	srand ( time(NULL) );	//seed of randoms
+	for (int i = 0; i < objectsQuantity; i++)
+	{		
+		(*objectsList + i) -> value = rand() % valueLimit + 1;
+		(*objectsList + i) -> weight = rand() % capacityLimit + 1;
+		(*objectsList + i) -> proportion = 
+		(*objectsList + i) -> value / (*objectsList + i) -> weight;
+		(*objectsList + i) -> taked = 0;
+	}
+}
+
+
+//METHOD RETURNS EXECUTION TIME OF THE DYNAMIC PROGRAMMING ALGORITHM
+//METHOS RECEIVE THE POINTER OF THE MAXZ VARIABLE
+double startDynamicProgramming(ObjectKind *objKinds, int sackSize, int objectsQuantity, int *maxZ)
+{
+	clock_t begin;
+	clock_t end;
+	double executionTime;
+
+	begin = clock();
+	*maxZ = knapsackDynamicProgramming(objKinds, sackSize + 1, objectsQuantity);
+	end = clock();
+	executionTime = (double)(end - begin);  //in microSeconds
+
+	return executionTime;
+}
+
+//METHOD RETURNS EXECUTION TIME OF THE SIMPLE GREEDY ALGORITHM
+//METHOS RECEIVE THE POINTER OF THE MAXZ VARIABLE
+double startSimpleGreedy(ObjectKind *objKinds, int sackSize, int objectsQuantity, int *maxZ)
+{
+	clock_t begin;
+	clock_t end;
+	double executionTime;
+
+	begin = clock();
+	*maxZ = knapsack_greedy_simple(objKinds, sackSize, objectsQuantity);
+	end = clock();
+	executionTime = (double)(end - begin);  //in microSeconds
+
+	return executionTime;
+}
+
+//METHOD RETURNS EXECUTION TIME OF THE PROPORTIONAL GREEDY ALGORITHM
+//METHOS RECEIVE THE POINTER OF THE MAXZ VARIABLE
+double startProportionalGreedy(ObjectKind *objKinds, int sackSize, int objectsQuantity, int *maxZ)
+{
+	clock_t begin;
+	clock_t end;
+	double executionTime;
+
+	begin = clock();
+	*maxZ = knapsack_greedy_fractional(objKinds, sackSize, objectsQuantity);
+	end = clock();
+	executionTime = (double)(end - begin);  //in microSeconds
+
+	return executionTime;
+}
+
+
+
+
+int verifyAgumentExperiment(char *argv[])
+{
+	
+	return 0;
+}
+
+void clearTakedObjects(ObjectKind **obj_list, int objectsQuantity)
+{
+	for (int i = 0; i < objectsQuantity; i++)
+	{		
+		(*obj_list + i) -> taked = 0;
+	}
+}
+
+
+void printExampleProblem(ObjectKind *objKinds, int objectsQuantity)
 {
 	printf("PROBLEM:\n");
 	for (int i = 0; i < objectsQuantity; i++)
@@ -105,4 +292,4 @@ void printExampleProblem(int objectsQuantity)
 		printf("x%d: \n\t value = %d, weight = %d\n\n", i + 1, 
 				(objKinds + i) -> value, (objKinds + i) -> weight);
 	}
-}*/
+}

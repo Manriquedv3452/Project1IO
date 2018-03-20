@@ -2,6 +2,10 @@ void createLatexTable(Object **resultMatrix, int rows, int columns);
 void writeProblemMathematically(ObjectKind *obj, int objectsQuantity, int capacity);
 void writeSolution(ObjectKind *solution, int size, int maxZ, double executionTime);
 void write_simple_greedy_solution(ObjectKind * simple_greedy_solution, int size, int max_z, double executionTime);
+void writeExperimentTables(double matrixTimeDProgramming[10][10], double matrixTimeSGreedy[10][10], double matrixTimePGreedy[10][10],
+				double porcentageSGreedy[10][10], double porcentagePGreedy[10][10], int casesNumber);
+void writeTableWithoutColor(double matrix1[10][10], int rows, int columns);
+void writeTableWithColor(double matrix1[10][10], int rows, int columns);
 void initializeLatex(void);
 void endLatexDocument(void);
 
@@ -37,7 +41,7 @@ void createLatexTable(Object **resultMatrix, int rows, int columns)
 
 	output = fopen("latex/latex.tex", "a");
 		
-	fprintf(output, "%s\n\\begin{longtable}{|*%d{p{0.5cm}|}}\n%s\n",
+	fprintf(output, "%s\n\\begin{longtable}{|*{%d}{p{0.5cm}|}}\n%s\n",
 				"\\subsection*{Programaci\\'on Din\\'amica}", columns+1,
 				"\\rowcolor{white}%");
 	
@@ -115,6 +119,120 @@ void write_fractional_greedy_solution(ObjectKind *solution, int size, int max_z,
 	fclose(output);		
 }
 
+
+//CREATE THE TABLES OF THE EXPERIMENTS
+void writeExperimentTables(double matrixTimeDProgramming[10][10], double matrixTimeSGreedy[10][10], double matrixTimePGreedy[10][10],
+				double porcentageSGreedy[10][10], double porcentagePGreedy[10][10], int casesNumber)
+{
+	output = fopen("latex/latex.tex", "a");
+
+	fprintf(output, "%s", "\\section*{Modo Experimento}\n");
+	fprintf(output, "En este modo se presentan las tablas con el promedio de tiempo de ejecuci\\'on en los 100 x %d casos\\\\\n", casesNumber);
+	fprintf(output, "\\subsection*{Programaci\\'on Din\\'amica}\nSe presenta la tabla con los promedios"
+				" de ejecuci\\'on de Programaci\\'on Din\\'amica ($\\mu s$)\\\\\n");
+
+	fprintf(output, "\\subsubsection*{Tabla de Promedios de Tiempo de Ejecuci\\'on de Programci\\'on Din\\'amica}\n");
+	writeTableWithoutColor(matrixTimeDProgramming, 10, 10);
+
+
+	//GREEDY SIMPLE
+	fprintf(output, "\\subsection*{Algoritmo Greedy Simple}\nSe presenta la tabla con los promedios"
+				" de ejecuci\\'on y porcentaje de soluci\\'on \\'optima del Greedy Simple ($\\mu s$)\\\\\n");
+
+	fprintf(output, "\\subsubsection*{Tabla de Promedios de Tiempo de Ejecuci\\'on del Greedy Simple}\n");
+	writeTableWithoutColor(matrixTimeSGreedy, 10, 10);
+	fprintf(output, "\\subsubsection*{Tabla de Porcentajes de coincidencia del Greedy Simple}\n");
+	writeTableWithColor(porcentageSGreedy, 10, 10);
+
+
+	//GREEDY PROPORCIONAL
+	fprintf(output, "\\subsection*{Algoritmo Greedy Proporcional}\nSe presenta la tabla con los promedios"
+				" de ejecuci\\'on y porcentaje de soluci\\'on \\'optima del Greedy Proporcional ($\\mu s$)\\\\\n");
+
+	fprintf(output, "\\subsubsection*{Tabla de Promedios de Tiempo de Ejecuci\\'on del Greedy Proporcional}\n");
+	writeTableWithoutColor(matrixTimePGreedy, 10, 10);
+	fprintf(output, "\\subsubsection*{Tabla de Porcentajes de coincidencia del Greedy Proporcional}\n");
+	writeTableWithColor(porcentagePGreedy, 10, 10);
+	
+
+	fclose(output);
+}
+
+//CREATE TABLE WITH COLORS IN SOME CONSITIONS
+void writeTableWithColor(double matrix1[10][10], int rows, int columns)
+{
+	//output = fopen("latex/latex.tex", "a");
+		
+	fprintf(output, "\\begin{tabu}{|@{}*{%d}{p{1.4cm}@{}|}}\n%s\n", columns+1, "\\rowcolor{white}%");
+	
+
+	int rowNumber = 100;
+
+	for (int i = 10; i <= 100; i+= 10)
+	{
+		fprintf(output, "& $%d$ ", i); 
+	}
+	fprintf(output, "\\\\\\hline\n");
+
+
+	for (int i = 0; i < rows; i++)
+	{
+		fprintf(output, "$%d$ ", rowNumber);
+		for (int j = 0; j < columns; j++)
+		{
+			if (matrix1[i][j] >= 0.5)
+				fprintf(output, "& \\cellcolor{green!20}$%.2f$ ", matrix1[i][j]);
+
+			else if (matrix1[i][j] > 0.0)
+				fprintf(output, "& \\cellcolor{yellow!20}$%.2f$ ", matrix1[i][j]);
+
+			else 
+				fprintf(output, "& \\cellcolor{red!20}$%.2f$ ", matrix1[i][j]);
+			
+		}
+		fprintf(output, "\\\\\\hline\n");
+		rowNumber += 100;
+	} 
+
+	fprintf(output, "%s", "\\rowcolor{white}%\n"
+			"\\end{tabu}\n\\pagebreak\n");
+	///fclose(output);
+}
+
+
+//CREATE THE TABLE WITH ONLY ONE COLOR
+void writeTableWithoutColor(double matrix1[10][10], int rows, int columns)
+{
+	//output = fopen("latex/latex.tex", "a");
+		
+	fprintf(output, "\\begin{tabu}{|@{}*{%d}{p{1.4cm}@{}|}}\n%s\n", columns+1, "\\rowcolor{white}%");
+	
+
+	int rowNumber = 100;
+
+	for (int i = 10; i <= 100; i+= 10)
+	{
+		fprintf(output, "& $%d$ ", i); 
+	}
+	fprintf(output, "\\\\\\hline\n");
+
+
+	for (int i = 0; i < rows; i++)
+	{
+		fprintf(output, "$%d$ ", rowNumber);
+		for (int j = 0; j < columns; j++)
+		{
+			fprintf(output, "& \\cellcolor{yellow!20}$%.2f$ ", matrix1[i][j]);
+			
+		}
+		fprintf(output, "\\\\\\hline\n");
+		rowNumber += 100;
+	} 
+
+	fprintf(output, "%s", "\\rowcolor{white}%\n"
+			"\\end{tabu}\n\\pagebreak\n");
+	///fclose(output);
+}
 //THIS METHOD WRITES THE LATEX HEADER.
 void initializeLatex(void)
 {
@@ -130,7 +248,7 @@ void initializeLatex(void)
 			"\\author{Manrique J. Dur\\'an V\\'asquez - Randy Morales Gamboa\\\\Investigaci\\'on de Operaciones\\\\}\n"
 			"\\date{\\today}\n\\newcommand\\tab[1][1cm]{\\hspace*{#1}}\n\\renewcommand*{\\arraystretch}{1.5}\n"
 			"\\begin{document}\n"
-			"\n\\maketitle\n\\pagebreak\n");
+			"\n\\maketitle\n\\oddsidemargin=5pt\n\\pagebreak\n");
 /*
 	fprintf(output,"\\begin{document}\n"
 			"\\begin{titlepage}\n"
