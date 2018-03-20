@@ -13,42 +13,43 @@ int knapsack_greedy_simple(ObjectKind *object_list, int sack_capacity, int objec
 	int current_weight = 0;
 	int current_best_object_pos;
 	int max_z = 0;
+	int objectSize = object_quantity;
+	int changes = 0;
 	ObjectKind *current_best_object = calloc(object_quantity, sizeof(ObjectKind));
 	//ObjectKind *solution;
 	//int solution_len = 0;
 	//solution = calloc(object_quantity, sizeof(ObjectKind));
-	
-	while(current_weight < sack_capacity)
+
+	for (int i = 0; i < objectSize; i++)
 	{
-		for(int i=0; i<object_quantity; i++)
-		{
-			if((object_list + i) -> taked != 1 && 
+		if((object_list + i) -> taked != 1 && 
 					(object_list + i) -> value > current_best_object -> value)
+		{
+			//current_best_object = (object_list + i);
+			if (current_weight + (object_list + i) -> weight <= sack_capacity)
 			{
-				//current_best_object = (object_list + i);
 				memcpy (current_best_object, (object_list + i), sizeof (current_best_object));
 				current_best_object_pos = i;
 				current_best_object -> taked = i;
+				changes = 1;
 			}
+
+		}
+		if (i + 1 == objectSize && current_weight <= sack_capacity && changes)
+		{
+			(object_list + current_best_object_pos) -> taked = 1;
+			current_weight += (object_list + current_best_object_pos) -> weight;
+			max_z = max_z + (object_list + current_best_object_pos) -> value;
+
+			i = -1;
+			current_best_object -> value = 0;
+			current_best_object -> weight = 0;
+			current_best_object -> taked = 0;
+			changes = 0;
 		}
 
-		if(current_weight + current_best_object -> weight > sack_capacity){
-			break;
-		}
-
-		(object_list + current_best_object_pos) -> taked = 1;
-		current_weight = current_weight + current_best_object -> weight;
-		
-		//memcpy ((solution + solution_len), current_best_object, sizeof (current_best_object));
-		//(solution + solution_len) -> taked = current_best_object -> taked;
-		//solution_len++;
-
-		max_z = max_z + current_best_object -> value;
-		current_best_object -> value = 0;
-		current_best_object -> weight = 0;
-		current_best_object -> taked = 0;	
-	}
 	
+	}
 	return max_z;
 }
 
