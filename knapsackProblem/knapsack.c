@@ -62,7 +62,7 @@ int knapsack_greedy_fractional(ObjectKind *object_list, int sack_capacity, int o
 	ObjectKind *current_best_object = calloc(object_quantity, sizeof(ObjectKind));
 
 	int j=0;
-	while(current_weight <= sack_capacity)
+	while(current_weight < sack_capacity)
 	{
 		current_best_object -> weight = 1;
 		for(int i=0; i<object_quantity; i++)

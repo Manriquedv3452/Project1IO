@@ -16,9 +16,13 @@ double startDynamicProgramming(ObjectKind *objKinds, int sackSize, int objectsQu
 double startSimpleGreedy(ObjectKind *objKinds, int sackSize, int objectsQuantity, int *maxZ);
 double startProportionalGreedy(ObjectKind *objKinds, int sackSize, int objectsQuantity, int *maxZ);
 void initializeMatrixCases(double *matrix[], int rows, int columns);
+int isNumeric(char character);
+int verifyAgumentExperiment(char *argv[]);
 
 int main(int argc, char* argv[])
 {
+	int isArgCorrect = 0;
+
 	if (argc == 2)
 	{
 		initializeLatex();
@@ -27,18 +31,30 @@ int main(int argc, char* argv[])
 		{
 			//printf("ARGUMENT GETED\n");
 			beginExample();
+			isArgCorrect = 1;
 		}
-		else if (strstr(argv[1], "-E") != NULL)
+		else 
 		{
 			//printf("ARGUMENT 2 GETED\n");
-			int n = 100;
-			beginExperiment(n);
-			
+			int n = verifyAgumentExperiment(argv);
+			if (n != 0)
+			{
+				beginExperiment(n);
+				isArgCorrect = 1;
+			}
+			else	{
+				printf("ARGUMENT NOT FOUND OR IS NOT VALID!\n\nTO RUN: './program -X' or './program -E=n'\n\n");
+				return 0;
+			}
+		
 			//if (verifyAgumentExperiment(argv)){printf("HOLA\n");}
 		}
 		endLatexDocument();
-		system("pdflatex -output-directory latex latex/latex.tex");
-		system("evince -s latex/latex.pdf");
+		if (isArgCorrect = 1)
+		{
+			system("pdflatex -output-directory latex latex/latex.tex");
+			system("evince -s latex/latex.pdf");
+		}
 	}
 	
 
@@ -68,26 +84,26 @@ int beginExample(void)
 
 	//generate objects randomly
 	generateObjects(&objKinds, objectsQuantity, 7, 20);
-	/*(objKinds + 0) -> value =7;
-	(objKinds + 0) -> weight = 3;
+	/*(objKinds + 0) -> value =5;
+	(objKinds + 0) -> weight = 2;
 	
-	(objKinds + 1) -> value = 9;
-	(objKinds + 1) -> weight = 4;
+	(objKinds + 1) -> value = 6;
+	(objKinds + 1) -> weight = 7;
 
-	(objKinds + 2) -> value = 5;
-	(objKinds + 2) -> weight = 2;
+	(objKinds + 2) -> value = 12;
+	(objKinds + 2) -> weight = 7;
 
-	(objKinds + 3) -> value = 12;
-	(objKinds + 3) -> weight = 6;
+	(objKinds + 3) -> value = 11;
+	(objKinds + 3) -> weight = 3;
 
-	(objKinds + 4) -> value = 14;
-	(objKinds + 4) -> weight = 7;
+	(objKinds + 4) -> value =11;
+	(objKinds + 4) -> weight = 6;
 
-	(objKinds + 5) -> value = 6;
-	(objKinds + 5) -> weight = 3;
+	(objKinds + 5) -> value = 19;
+	(objKinds + 5) -> weight = 2;*/
 
-	(objKinds + 6) -> value = 12;
-	(objKinds + 6) -> weight = 5;*/
+	//(objKinds + 6) -> value = 12;
+	//(objKinds + 6) -> weight = 5;
 
 
 	//begin dynamic programming
@@ -270,7 +286,31 @@ double startProportionalGreedy(ObjectKind *objKinds, int sackSize, int objectsQu
 
 int verifyAgumentExperiment(char *argv[])
 {
-	
+	char nString[10];
+	if (argv[1][0] == '-' && argv[1][1] == 'E' && argv[1][2] == '=')
+	{
+		int index = 0;
+		for (int i = 3; argv[1][i] != '\0'; i++)
+		{
+			if (!isNumeric(argv[1][i]))
+				return 0;
+
+			nString[index] = argv[1][i];
+			index++;
+
+			if (index == 10)
+				return 0;
+		}
+	}
+		
+	return atoi(nString);
+}
+
+int isNumeric(char character)
+{
+	if (character >= 48 && character <= 57)
+		return 1;
+
 	return 0;
 }
 
